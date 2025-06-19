@@ -180,7 +180,7 @@ void preferensi_hari(char *arr,char *dest){
     if (strstr(arr,"malam")!=NULL||strstr(arr,"Malam")!=NULL)
         T[2] = 1;
     //Cek bebas
-    if (strstr(arr,"bebas")!=NULL||strstr(arr,"Bebas")!=NULL){
+    if (strstr(arr,"bebas")!=NULL||strstr(arr,"Bebas")!=NULL||strstr(arr,"Tidak Ada Preferensi")!=NULL||strstr(arr,"Fleksibel")!=NULL){
          T[0]=1;T[1]=1;T[2]=1;
     }    
     /*printf("T[0]:%d |T[1]:%d |T[2]%d\n",T[0],T[1],T[2]);*/
@@ -300,11 +300,13 @@ void Tampil(char *nama_file){
     }
     else{
         struct pegawai *temp = first;
-        printBanner("DATA PEGAWAI",'=',100);
-        printf("%-36s%-39s%-25s\n","Nama Pegawai","Maksimal Shift(Per Minggu)","Preferensi Shift");
+        int i = 1;
+        printBanner("DATA PEGAWAI",'=',102);
+        printf("%-6s%-36s%-39s%-20s\n","No","Nama Pegawai","Maksimal Shift(Per Minggu)","Preferensi Shift");
         while (temp != NULL){
-            printf("%-36s%11s%d%27s%-25s\n",temp->nama," ",temp->maks_shift," ",temp->preferensi_shift);
+            printf("%-6d%-36s%11s%d%27s%-25s\n",i,temp->nama," ",temp->maks_shift," ",temp->preferensi_shift);
             temp = temp -> next;
+            i++;
         }
         printf("\n");
     }
@@ -357,11 +359,11 @@ void hapus(int autosave_param,char *nama_file){
             temp = first;
             i = 1;
             while (temp != NULL){
-                printf("[%d]%s\n",i,temp->nama);
+                printf("[%d] %s\n",i,temp->nama);
                 temp = temp->next;
                 i++;
             }
-            printf("[0]Ketik \"Kembali\" untuk kembali ke menu utama\n");
+            printf("\n[0] Ketik \"Kembali\" untuk kembali ke menu utama\n");
             printf("\nMasukkan nama pegawai yang ingin dihapus dari data< ");
             input_string(nama_pegawai);
             temp = first;
@@ -483,8 +485,8 @@ void Fitur_display(int  autosave_param){
     
 }
 
-//Program Utama
-int main(){
+//Buat Masukin ke main utama
+void Database(){
     int input ;
     int autosave_param=0;
     char nama_file[100]="NONE";
@@ -536,4 +538,6 @@ int main(){
         Fitur_display(autosave_param);
         status_disp(nama_file,autosave_param,&input);
     }
+    
 }
+
