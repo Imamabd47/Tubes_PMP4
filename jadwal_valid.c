@@ -126,12 +126,11 @@ int cekPreferensi(const char *preferensi_dokter, const char *shift) {
 int hitungPelanggaranPreferensi(char jadwal[30][3][6][100]) {
     int total_pelanggaran = 0;
     char *shiftLabel[] = {"pagi", "siang", "malam"};
+    int max_dokter[] = {6, 6, 5};  // Array untuk jumlah maksimal dokter per shift
 
     for (int hari = 0; hari < 30; hari++) {
         for (int s = 0; s < 3; s++) {
-            int max_dokter = (s == 2) ? 5 : 6;
-            
-            for (int d = 0; d < max_dokter; d++) {
+            for (int d = 0; d < max_dokter[s]; d++) {
                 if (strlen(jadwal[hari][s][d]) == 0) continue;
                 
                 // Cari dokter di linked list
@@ -155,6 +154,7 @@ int hitungPelanggaranPreferensi(char jadwal[30][3][6][100]) {
 
 void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
     char *shiftLabel[] = {"pagi", "siang", "malam"};
+    int max_dokter[] = {6, 6, 5}; 
 
     for (int minggu = 0; minggu < 30; minggu += 7) {
         resetShiftMingguan();
@@ -164,9 +164,8 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
 
             // Alokasi berdasarkan preferensi
             for (int s = 0; s < 3; s++) {
-                int max_dokter = (s == 2) ? 5 : 6;
                 struct datadokter *curr = head;
-                while (curr && count[s] < max_dokter) {
+                while (curr && count[s] < max_dokter[s]) {
                     if (curr->shift > 0 && cekPreferensi(curr->preferensi, shiftLabel[s])) {
                         strcpy(jadwal[hari][s][count[s]++], curr->nama);
                         curr->shift--;
@@ -177,9 +176,8 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
 
             // Isi sisa jika belum penuh
             for (int s = 0; s < 3; s++) {
-                int max_dokter = (s == 2) ? 5 : 6;
                 struct datadokter *curr = head;
-                while (curr && count[s] < max_dokter) {
+                while (curr && count[s] < max_dokter[s]) {
                     if (curr->shift > 0) {
                         int alreadyScheduled = 0;
                         for (int x = 0; x < 3; x++) {
@@ -209,12 +207,13 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
 
 void tampilkanJadwal30hari(char jadwal[30][3][6][100]) {
     char* shiftNama[] = {"Pagi", "Siang", "Malam"};
+    int max_dokter[] = {6, 6, 5}; 
+
     for (int hari = 0; hari < 30; hari++) {
         printf("\nHari ke-%d:\n", hari + 1);
         for (int s = 0; s < 3; s++) {
-            int max_dokter = (s == 2) ? 5 : 6;
-            printf("  Shift %s (%d dokter):\n", shiftNama[s], max_dokter);
-            for (int j = 0; j < max_dokter; j++) {
+            printf("  Shift %s (%d dokter):\n", shiftNama[s], max_dokter[s]);
+            for (int j = 0; j < max_dokter[s]; j++) {
                 if (strlen(jadwal[hari][s][j]) > 0)
                     printf("    - %s\n", jadwal[hari][s][j]);
                 else
