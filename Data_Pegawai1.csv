@@ -1,8 +1,47 @@
-"Nama","shift_maks","Preferensi_shift"
-Imam,5,Pagi
-Dzikri,7,Malam
-Luna,6,Siang
-Adhi,6,Pagi dan Malam
-Ojan,7,Pagi Siang dan Malam
-Amagos De La Framos,6,Pagi dan Malam
-Radu El Framos,7,Malam
+"Nama","shift_maks","Pagi","Siang","Malam"
+Prof. Dr. Ir. Pekik Argo Dahono,7,1,0,1
+Prof. Ir. I Nengah Wiratmadja Ph.D.,6,0,1,1
+Dr. Ir. Nanang Hariyanto M.T.,5,1,0,0
+Dr. Ir. Enceng Syafrudin M.T.,7,1,0,1
+Dr. Ir. Agus Purwadi M.T.,6,0,1,0
+Dr. Arwindra Rizqiawan S.T. M.T.,5,1,1,0
+Dr. Ir. Edi Leksono M.Eng.,7,0,1,1
+Prof. Dr. Ir. Adit Kurniawan M.Eng.,6,1,0,0
+Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.,7,1,1,1
+Dr. Ir. Hendrawan M.Sc.,5,0,1,0
+Dr. Ir. Jaka Sembiring M.Eng.,6,1,0,1
+Dr. Ir. Ian Josef Matheus M.T.,7,1,1,0
+Dr. Iskandar S.T. M.T.,5,0,0,1
+Dr. Ir. Effrina Yanti M.T.,6,1,1,0
+Prof. Dr. Ir. M. Ridwan Effendi M.A.Sc.,7,0,1,1
+Dr. Ir. Trio Adiono S.T. M.T.,6,1,0,1
+Dr. Tutun Juhana S.T. M.T.,5,1,0,0
+Dr. Ir. Basuki Endah Priyanto M.T.,7,0,1,1
+Dr. Ir. Achmad Bakhtiar M.Eng.,6,1,1,0
+Dr. Irman Idris S.T. M.T.,5,0,1,0
+Prof. Dr. Ir. Tati Latifah R. Mengko,7,1,0,1
+Dr. Ir. Hasballah Zakaria M.Sc.,6,1,1,0
+Dr. Richard Mengko M.Sc.,5,0,1,1
+Dr. Vebi Nadhira S.T. M.T.,7,1,0,0
+Dr. Suprijanto S.T. M.T.,6,1,1,1
+Dr. Ir. Augie Widyotriatmo M.T.,5,0,1,0
+Dr. Ir. Hilwadi Hindersah M.Sc.,7,1,0,1
+Dr. Ir. Endra Joelianto,6,0,1,1
+Dr. Farida,5,1,1,0
+Dr. Widyawardana Adiprawita S.T. M.T.,7,1,0,0
+Dr. Ir. Yusep Rosmansyah M.Sc.,6,1,0,1
+Fadhil Hidayat S.T. M.Sc. Ph.D.,5,0,1,1
+Prof. Dr. Ir. Dwi H. Widyantoro M.Sc.,7,1,1,0
+Dr. Ayu Purwarianti S.T. M.T.,6,1,0,0
+Dr. Muhammad Fachrurrozi S.T. M.T.,5,1,1,0
+Prof. Dr. Ir. Kridanto Surendro M.Sc.,7,0,1,1
+Dr. Ir. Aceng Sambas M.T.,6,1,0,1
+Prof. Dr. Ir. Carmadi Machbub,5,0,1,0
+Dr. Ir. Kusprasapta Mutijarsa S.T. M.T.,7,1,1,0
+Ir. Waskita Adijarto M.T. Ph.D.,6,1,0,0
+Dr. Yoanes Bandung S.T. M.T.,5,0,1,1
+Prof. Dr. Ir. Ary Setijadi Prihatmanto M.Sc.,7,1,1,0
+Dr. Arry Akhmad Arman S.T. M.T.,6,1,0,1
+Dr. Rila Mandala S.T. M.Eng.,5,0,1,0
+Dr. Dody Ichwana S.T. M.T.,7,1,1,1
+Ir. Mervin Tangguar Hutabarat MSc. PhD.,21,1,1,1
