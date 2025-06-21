@@ -426,7 +426,7 @@ void simpanJadwalKeCSV(const char *namaFile, const Shift jadwal[], int totalShif
 
     printf("\nMenyimpan jadwal ke file '%s' dalam format data mentah...", namaFile);
 
-    fprintf(fptr, "Hari,Tipe_Shift,ID_Dokter,Nama_Dokter\n");
+    fprintf(fptr, "Hari,Tipe_Shift,Nama_Dokter\n");
 
     for (int i = 0; i < totalShiftTerisi; i++)
     {
@@ -438,7 +438,7 @@ void simpanJadwalKeCSV(const char *namaFile, const Shift jadwal[], int totalShif
         {
             const char *namaDokter = daftarDokter[idDokter].nama;
             
-            fprintf(fptr, "%d,%s,%d,\"%s\"\n", hari, namaShift, idDokter, namaDokter);
+            fprintf(fptr, "%d,%s,\"%s\"\n", hari, namaShift, namaDokter);
         }
     }
 
