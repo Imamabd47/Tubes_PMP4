@@ -204,7 +204,7 @@ int hitungPelanggaranPreferensi(char jadwal[30][3][6][100])
 
 void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
     char *shiftLabel[] = {"pagi", "siang", "malam"};
-    int max_dokter[] = {4, 4, 5};
+    int max_dokter[] = {6, 6, 5};
     char pola_mingguan[7][3][6][100] = {{{{0}}}};
     
     // Array untuk melacak dokter yang sudah bekerja per hari
