@@ -3,17 +3,11 @@
 #include <string.h>
 
 // =====================================================================
-// --- BAGIAN 1: DEFINISI STRUKTUR DATA & KONSTANTA ---
+// --- BAGIAN PENDEFINISIAN DAN INISIASI STRUCT ---
 // =====================================================================
 
-#define FileNamaDokter "datadokter.csv"
-#define JUMLAH_HARI 30
-#define SHIFT_PER_HARI 3
-#define MAX_DOKTER_PER_SHIFT 6 // Kuota maksimal, akan disesuaikan di logika
-#define MAX_DOKTER 100
-#define TOTAL_SHIFT_MAX (JUMLAH_HARI * SHIFT_PER_HARI * MAX_DOKTER_PER_SHIFT)
+#define MAX_DOKTER 500 // Bebas diubah asal jangan kurang dari jumlah dokter yang ada di .CSV
 
-// Struct untuk tampilan dan laporan (fitur tambahan di main.c)
 typedef enum
 {
     PAGI,
@@ -37,7 +31,6 @@ typedef struct
     int id_dokter;
 } Shift;
 
-// Struct asli dari jadwalotomatis.c untuk proses penjadwalan inti
 struct datadokter
 {
     char *nama;
@@ -72,12 +65,12 @@ void tambahNode(char *nama, int shift, char *preferensi)
     }
 }
 
-void readFile()
+void readFile(const char *namaFileInput)
 {
-    FILE *fptr = fopen(FileNamaDokter, "r");
+    FILE *fptr = fopen(namaFileInput, "r");
     if (!fptr)
     {
-        printf("File '%s' tidak dapat dibuka. Pastikan file tersebut ada.\n", FileNamaDokter);
+        printf("File tidak dapat dibuka. \n");
         return;
     }
     char buf[256];
@@ -100,7 +93,6 @@ void tampilkanDokter()
 {
     struct datadokter *curr = head;
     int i = 1;
-    printf("\n--- Daftar Dokter Tersedia ---\n");
     while (curr != NULL)
     {
         printf("%d. Dr. %s - Maks: %d/minggu, Pref: %s\n", i++, curr->nama, curr->shift_awal, curr->preferensi);
@@ -181,9 +173,9 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100])
 
         for (int hari = minggu; hari < minggu + 7 && hari < 30; hari++)
         {
-            int count[3] = {0};
+            int count[3] = {0}; // count[0]=pagi, count[1]=siang, count[2]=malam
 
-            for (int s = 0; s < 3; s++)
+            for (int s = 0; s < 3; s++) // Alokasi berdasarkan preferensi
             {
                 struct datadokter *curr = head;
                 while (curr && count[s] < max_dokter[s])
@@ -196,7 +188,7 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100])
                     curr = curr->next;
                 }
             }
-
+            // Isi sisa jika belum penuh
             for (int s = 0; s < 3; s++)
             {
                 struct datadokter *curr = head;
@@ -230,13 +222,13 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100])
             }
         }
     }
-
+    // Hitung dan tampilkan pelanggaran preferensi
     int pelanggaran = hitungPelanggaranPreferensi(jadwal);
     printf("\nTotal pelanggaran preferensi shift: %d\n", pelanggaran);
 }
 
 // =====================================================================
-// --- BAGIAN ADHI & LUNA (FITUR TAMBAHAN & UI) ---
+// --- BAGIAN ADHI & LUNA ---
 // =====================================================================
 
 void bersihkanBuffer()
@@ -260,7 +252,7 @@ int konversiDataDokter(Dokter daftarDokter[])
     return jumlahDokter;
 }
 
-int konversiJadwal(char jadwalOtomatis[JUMLAH_HARI][SHIFT_PER_HARI][MAX_DOKTER_PER_SHIFT][100], Shift jadwalFinal[], Dokter daftarDokter[], int jumlahDokter)
+int konversiJadwal(char jadwalOtomatis[30][3][6][100], Shift jadwalFinal[], Dokter daftarDokter[], int jumlahDokter)
 {
     int totalShiftTerisi = 0;
     char *shiftLabel[] = {"pagi", "siang", "malam"};
@@ -272,9 +264,9 @@ int konversiJadwal(char jadwalOtomatis[JUMLAH_HARI][SHIFT_PER_HARI][MAX_DOKTER_P
         daftarDokter[i].pelanggaran_preferensi_terjadi = 0;
     }
 
-    for (int h = 0; h < JUMLAH_HARI; h++)
+    for (int h = 0; h < 30; h++)
     {
-        for (int s = 0; s < SHIFT_PER_HARI; s++)
+        for (int s = 0; s < 3; s++)
         {
             for (int d = 0; d < max_dokter_per_shift_arr[s]; d++)
             {
@@ -326,13 +318,13 @@ const char *getNamaShift(TipeShift tipe)
 
 void tampilkanJadwalHarian(int hari, const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[])
 {
-    if (hari < 1 || hari > JUMLAH_HARI)
+    if (hari < 1 || hari > 30)
     {
         printf("Hari tidak valid.\n");
         return;
     }
     printf("\n--- Jadwal Jaga Hari ke-%d ---\n", hari);
-    for (int s = 0; s < SHIFT_PER_HARI; s++)
+    for (int s = 0; s < 3; s++)
     {
         printf("Shift %-5s : ", getNamaShift((TipeShift)s));
         int count = 0;
@@ -358,7 +350,16 @@ void tampilkanJadwalMingguan(int minggu, const Shift jadwal[], int totalShiftTer
         return;
     }
     int hariMulai = (minggu - 1) * 7 + 1;
-    int hariSelesai = (hariMulai + 6 > JUMLAH_HARI) ? JUMLAH_HARI : hariMulai + 6;
+
+    int hariSelesai;
+    if (hariMulai + 6 > 30)
+    {
+        hariSelesai = 30;
+    }
+    else
+    {
+        hariSelesai = hariMulai + 6;
+    }
 
     printf("\n\n===============================================");
     printf("\n--- JADWAL MINGGU KE-%d (HARI %d s/d %d) ---", minggu, hariMulai, hariSelesai);
@@ -366,7 +367,7 @@ void tampilkanJadwalMingguan(int minggu, const Shift jadwal[], int totalShiftTer
 
     for (int h = hariMulai; h <= hariSelesai; h++)
     {
-        if (h > JUMLAH_HARI)
+        if (h > 30)
             break;
         tampilkanJadwalHarian(h, jadwal, totalShiftTerisi, daftarDokter);
     }
@@ -375,12 +376,12 @@ void tampilkanJadwalMingguan(int minggu, const Shift jadwal[], int totalShiftTer
 void tampilkanJadwalSebulan(const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[])
 {
     printf("\n\n*************************************************");
-    printf("\n*** TAMPILAN JADWAL SEBULAN PENUH       ***");
+    printf("\n*** TAMPILAN JADWAL SEBULAN PENUH ***");
     printf("\n*************************************************\n");
     for (int m = 1; m <= 5; m++)
     {
         int hariMulai = (m - 1) * 7 + 1;
-        if (hariMulai > JUMLAH_HARI)
+        if (hariMulai > 30)
             break;
         tampilkanJadwalMingguan(m, jadwal, totalShiftTerisi, daftarDokter);
     }
@@ -414,44 +415,52 @@ void tampilkanLaporanPelanggaran(const Dokter daftarDokter[], int jumlahDokter)
     }
 }
 
-// DIUBAH: Fungsi sekarang menerima nama file sebagai parameter
 void simpanJadwalKeCSV(const char *namaFile, const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[])
 {
     FILE *fptr = fopen(namaFile, "w");
     if (!fptr)
     {
-        // DIUBAH: Pesan error menampilkan nama file yang gagal dibuat
         printf("ERROR: Tidak dapat membuat file '%s' untuk penulisan.\n", namaFile);
         return;
     }
 
-    // DIUBAH: Pesan proses menampilkan nama file yang sedang dibuat
     printf("\nMenyimpan jadwal ke file '%s'...", namaFile);
 
     for (int minggu = 0; minggu < 5; minggu++)
     {
         int hariMulai = minggu * 7 + 1;
-        if (hariMulai > JUMLAH_HARI)
+        if (hariMulai > 30)
             break;
 
-        fprintf(fptr, "JADWAL MINGGU %d (Hari %d - %d)\n", minggu + 1, hariMulai, hariMulai + 6 > JUMLAH_HARI ? JUMLAH_HARI : hariMulai + 6);
+        int hariSelesai;
+        if (hariMulai + 6 > 30)
+        {
+            hariSelesai = 30;
+        }
+        else
+        {
+            hariSelesai = hariMulai + 6;
+        }
+
+        fprintf(fptr, "JADWAL MINGGU %d (Hari %d - %d)\n", minggu + 1, hariMulai, hariSelesai);
+
         fprintf(fptr, "Shift");
         for (int i = 0; i < 7; i++)
         {
             int hariIni = hariMulai + i;
-            if (hariIni > JUMLAH_HARI)
+            if (hariIni > 30)
                 break;
             fprintf(fptr, ",Hari %d", hariIni);
         }
         fprintf(fptr, "\n");
 
-        for (int s = 0; s < SHIFT_PER_HARI; s++)
+        for (int s = 0; s < 3; s++)
         {
             fprintf(fptr, "%s", getNamaShift((TipeShift)s));
             for (int i = 0; i < 7; i++)
             {
                 int hariIni = hariMulai + i;
-                if (hariIni > JUMLAH_HARI)
+                if (hariIni > 30)
                     break;
                 char selBuffer[2048] = "";
                 for (int j = 0; j < totalShiftTerisi; j++)
@@ -475,10 +484,9 @@ void simpanJadwalKeCSV(const char *namaFile, const Shift jadwal[], int totalShif
     fclose(fptr);
     printf(" Berhasil.\n");
 }
-
 void cariJadwalDokter(const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[], int jumlahDokter)
 {
-    char namaCari[50];
+    char namaCari[100];
     int idDokter = -1;
     int shiftDitemukan = 0;
 
@@ -526,7 +534,7 @@ void cariJadwalDokter(const Shift jadwal[], int totalShiftTerisi, const Dokter d
 // --- FUNGSI UTAMA (MAIN) & KONTROL MENU ---
 // =====================================================================
 
-void tampilkanMenu()
+void Menu()
 {
     printf("\n=========================================");
     printf("\n|   Sistem Penjadwalan Dokter Otomatis  |");
@@ -539,7 +547,7 @@ void tampilkanMenu()
     printf("5. Tampilkan Jadwal Sebulan Penuh\n");
     printf("6. Cari Jadwal Dokter\n");
     printf("-----------------------------------------\n");
-    printf("7. Tampilkan Laporan Pelanggaran\n");
+    printf("7. Tampilkan Laporan Pelanggaran Preferensi Shift\n");
     printf("8. Simpan Jadwal ke File CSV\n");
     printf("-----------------------------------------\n");
     printf("0. Keluar\n");
@@ -548,29 +556,42 @@ void tampilkanMenu()
 
 int main()
 {
-    char jadwalOtomatis[JUMLAH_HARI][SHIFT_PER_HARI][MAX_DOKTER_PER_SHIFT][100] = {0};
+    char jadwalOtomatis[30][3][6][100] = {0};
     Dokter daftarDokter[MAX_DOKTER];
-    Shift jadwalFinal[TOTAL_SHIFT_MAX];
-
+    Shift jadwalFinal[30 * 3 * 6];
     int jumlahDokter = 0;
     int totalShiftTerisi = 0;
     int pilihan = -1;
     int jadwalSudahDibuat = 0;
+    char namaFileInput[100];
 
-    readFile();
-    if (head == NULL)
+    printf("=========================================\n");
+    printf("|   Selamat Datang di Program Penjadwalan Dokter  |\n");
+    printf("=========================================\n");
+
+    // --- BLOK KODE YANG DIPERBAIKI ---
+    // Logika perulangan untuk meminta input file hingga berhasil.
+    do
     {
-        printf("Tidak ada data dokter untuk diproses. Program berhenti.\n");
-        return 1;
-    }
+        printf("\nMasukkan nama file sumber data dokter (contoh: datadokter.csv): ");
+        scanf(" %[^\n]", namaFileInput);
+        bersihkanBuffer();
+        readFile(namaFileInput);
+
+        if (head == NULL)
+        {
+            printf("[!] Gagal memuat data. Pastikan nama file benar dan file tidak kosong. Silakan coba lagi.\n");
+        }
+
+    } while (head == NULL);
+
     jumlahDokter = konversiDataDokter(daftarDokter);
 
-    printf("Selamat datang di Sistem Penjadwalan Dokter!\n");
-    printf("Data %d dokter berhasil dimuat.\n", jumlahDokter);
+    printf("\nData %d dokter berhasil dimuat.\n", jumlahDokter);
 
     do
     {
-        tampilkanMenu();
+        Menu();
         printf(">> Pilihan Anda: ");
         if (scanf("%d", &pilihan) != 1)
         {
@@ -630,13 +651,10 @@ int main()
                 }
                 else if (pilihan == 8)
                 {
-                    // BARU: Logika untuk meminta input nama file dari pengguna
                     char namaFileOutput[100];
-                    printf("\nMasukkan nama file untuk menyimpan jadwal (misal: jadwal_bulan_ini.csv): ");
+                    printf("\nMasukkan nama file untuk menyimpan jadwal (misal: jadwal_bulan.csv): ");
                     scanf(" %[^\n]", namaFileOutput);
                     bersihkanBuffer();
-
-                    // Panggil fungsi simpan dengan nama file dari input pengguna
                     simpanJadwalKeCSV(namaFileOutput, jadwalFinal, totalShiftTerisi, daftarDokter);
                 }
             }
