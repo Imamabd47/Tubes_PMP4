@@ -486,66 +486,28 @@ void simpanJadwalKeCSV(const char *namaFile, const Shift jadwal[], int totalShif
         return;
     }
 
-    printf("\nMenyimpan jadwal ke file '%s'...", namaFile);
+    printf("\nMenyimpan jadwal ke file '%s' dalam format data mentah...", namaFile);
 
-    for (int minggu = 0; minggu < 5; minggu++)
+    fprintf(fptr, "Hari,Tipe_Shift,Nama_Dokter\n");
+
+    for (int i = 0; i < totalShiftTerisi; i++)
     {
-        int hariMulai = minggu * 7 + 1;
-        if (hariMulai > 30)
-            break;
-
-        int hariSelesai;
-        if (hariMulai + 6 > 30)
+        int hari = jadwal[i].hari;
+        const char *namaShift = getNamaShift(jadwal[i].tipe);
+        int idDokter = jadwal[i].id_dokter;
+        
+        if (idDokter >= 0) 
         {
-            hariSelesai = 30;
+            const char *namaDokter = daftarDokter[idDokter].nama;
+            
+            fprintf(fptr, "%d,%s,\"%s\"\n", hari, namaShift, namaDokter);
         }
-        else
-        {
-            hariSelesai = hariMulai + 6;
-        }
-
-        fprintf(fptr, "JADWAL MINGGU %d (Hari %d - %d)\n", minggu + 1, hariMulai, hariSelesai);
-
-        fprintf(fptr, "Shift");
-        for (int i = 0; i < 7; i++)
-        {
-            int hariIni = hariMulai + i;
-            if (hariIni > 30)
-                break;
-            fprintf(fptr, ",Hari %d", hariIni);
-        }
-        fprintf(fptr, "\n");
-
-        for (int s = 0; s < 3; s++)
-        {
-            fprintf(fptr, "%s", getNamaShift((TipeShift)s));
-            for (int i = 0; i < 7; i++)
-            {
-                int hariIni = hariMulai + i;
-                if (hariIni > 30)
-                    break;
-                char selBuffer[2048] = "";
-                for (int j = 0; j < totalShiftTerisi; j++)
-                {
-                    if (jadwal[j].hari == hariIni && jadwal[j].tipe == (TipeShift)s)
-                    {
-                        strcat(selBuffer, daftarDokter[jadwal[j].id_dokter].nama);
-                        strcat(selBuffer, "\n");
-                    }
-                }
-                if (strlen(selBuffer) > 0)
-                {
-                    selBuffer[strlen(selBuffer) - 1] = '\0';
-                }
-                fprintf(fptr, ",\"%s\"", selBuffer);
-            }
-            fprintf(fptr, "\n");
-        }
-        fprintf(fptr, "\n");
     }
+
     fclose(fptr);
     printf(" Berhasil.\n");
 }
+
 void cariJadwalDokter(const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[], int jumlahDokter)
 {
     char namaCari[100];
