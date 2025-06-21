@@ -148,37 +148,37 @@ void eror(){
 }
 
 //Untuk Menghapus semua link list yang tersimpan**
-void reset(struct pegawai **first, struct pegawai **List){
-    struct pegawai *temp = *first;
+void reset(){
+    struct pegawai *temp = first;
     while(temp != NULL){
         struct pegawai *next = temp -> next;
         free(temp);
         temp = next;
     }
-    *first = NULL;
-    *List = NULL;
+    first = NULL;
+    Data_Pegawai = NULL;
 }
 
 //Penentu hari dari file
 void preferensi_hari(int  *arr_preferensi,char *dest){    
     //Cek bebas
     if (arr_preferensi[2]==1&&arr_preferensi[1]==1&&arr_preferensi[0]==1)
-        strcpy(dest,"Pagi Siang dan Malam") ; //0 Bebas
+        strcpy(dest,"pagi siang malam") ; //0 Bebas
     else if (arr_preferensi[2]==1&&arr_preferensi[1]==1)
-        strcpy(dest,"Siang dan Malam");  //6 siang dan malam
+        strcpy(dest,"siang malam");  //6 siang dan malam
     else if (arr_preferensi[0]==1&&arr_preferensi[2]==1)
-        strcpy(dest,"Pagi dan Malam");  //5 pagi dan malam
+        strcpy(dest,"pagi malam");  //5 pagi dan malam
     else if (arr_preferensi[0]==1&&arr_preferensi[1]==1)
-        strcpy(dest,"Pagi dan Siang");  //4 pagi dan Siang
+        strcpy(dest,"pagi siang");  //4 pagi dan Siang
     else if (arr_preferensi[2]==1)
-        strcpy(dest,"Malam");  //3 malam
+        strcpy(dest,"malam");  //3 malam
     else if (arr_preferensi[1]==1)
-        strcpy(dest,"Siang");  //2 siang
+        strcpy(dest,"siang");  //2 siang
     else 
-        strcpy(dest,"Pagi");  //1 pagi
+        strcpy(dest,"pagi");  //1 pagi
 }
 
-//Penentu  hari dari kata ke boolena
+//Penentu  hari dari kata ke boolean
 void preferensi_hari_inverse(char *source, int *dest){
     //Cek pagi
     if (strstr(source,"pagi")!=NULL||strstr(source,"Pagi")!=NULL)
@@ -320,7 +320,7 @@ void load_data(char *nama_file,char *nama_file_default){
                     printf("\n");
                     break;
                 case 1:
-                    reset(&first,&Data_Pegawai);
+                    reset();
                     printf("\nMasukkan nama File yang ingin dibuat< ");
                     input_string(nama_file);printf("\n");
                     strcpy(nama_file_default,nama_file);
@@ -336,7 +336,7 @@ void load_data(char *nama_file,char *nama_file_default){
             }
         }
         else{
-            reset(&first,&Data_Pegawai);
+            reset();
             strcpy(nama_file_default,nama_file);
             fgets(data,256,csv1);
             while (fgets(data,256,csv1)!=NULL){
@@ -360,7 +360,7 @@ void Tampil(char *nama_file){
     else{
         struct pegawai *temp = first;
         int i = 1;
-        printBanner("DATA PEGAWAI",'=',136);
+        printBanner("DATA DOKTER",'=',136);
         printf("%-6s%-50s%-39s%-20s\n","No","Nama Pegawai","Maksimal Shift(Per Minggu)","Preferensi Shift","");
         while (temp != NULL){
             if (temp->maks_shift>9){
@@ -543,19 +543,20 @@ void Load_Nama_File(char *nama_file,char *nama_file_default){
         FILE *csv1;
         char data[256];
         csv1 = fopen(nama_file,"r");
-        reset(&first,&Data_Pegawai);
+        reset();
         strcpy(nama_file_default,nama_file);
         fgets(data,256,csv1);
         while (fgets(data,256,csv1)!=NULL){
                 file2list(data);
             }
+        list2file_output(nama_file);
         fclose(csv1);
     }
 }
 
 void reset_data(char *nama_file,char *nama_file_default){
     if (strcasecmp(nama_file,"NONE")!=0){
-        reset(&first,&Data_Pegawai);
+        reset();
         strcpy(nama_file,"NONE");
         strcpy(nama_file_default,nama_file);
         list2file_output(nama_file);
@@ -565,8 +566,9 @@ void reset_data(char *nama_file,char *nama_file_default){
     }
 }
 
+
 //Buat Masukin ke main utama
-int Database(){
+void Database(){
     int input ;
     char nama_file[100]="NONE";
     char nama_file_default[100] ="NONE";
@@ -592,6 +594,7 @@ int Database(){
             reset_data(nama_file,nama_file_default);
             break;
         case 0:
+            reset();
             break;
         default:
             printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n\n");
@@ -600,6 +603,5 @@ int Database(){
         Fitur_display();
         status_disp(nama_file,&input);
     }   
-    return(0);
 }
 

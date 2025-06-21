@@ -8,12 +8,14 @@
 
 #define MAX_DOKTER 500 // Bebas diubah asal jangan kurang dari jumlah dokter yang ada di .CSV
 
+
 typedef enum
 {
     PAGI,
     SIANG,
     MALAM
 } TipeShift;
+
 
 typedef struct
 {

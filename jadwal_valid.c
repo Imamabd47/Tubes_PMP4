@@ -40,11 +40,9 @@ void readFile() {
     while (fgets(buf, sizeof(buf), fptr)) {
         if (strlen(buf) > 0 && buf[strlen(buf) - 1] == '\n')
             buf[strlen(buf) - 1] = '\0';
-
         char *nama = strtok(buf, ",");
         char *shiftStr = strtok(NULL, ",");
         char *pref = strtok(NULL, ",");
-
         tambahNode(nama, atoi(shiftStr), pref);
     }
 
