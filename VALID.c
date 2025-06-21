@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <strings.h>
 
 // =====================================================================
 // --- BAGIAN PENDEFINISIAN DAN INISIASI STRUCT ---
@@ -9,14 +8,12 @@
 
 #define MAX_DOKTER 500 // Bebas diubah asal jangan kurang dari jumlah dokter yang ada di .CSV
 
-
 typedef enum
 {
     PAGI,
     SIANG,
     MALAM
 } TipeShift;
-
 
 typedef struct
 {
@@ -127,7 +124,6 @@ void resetShiftMingguan()
 }
 
 void acakUrutanDokter() {
-    // Mengacak urutan linked list dokter menggunakan Fisher-Yates shuffle
     if (head == NULL || head->next == NULL) return;
     
     // Hitung jumlah dokter
@@ -139,23 +135,21 @@ void acakUrutanDokter() {
     }
     
     // Konversi linked list ke array
-    struct datadokter **arr = malloc(count * sizeof(struct datadokter*));
+    struct datadokter **arr = malloc(count * sizeof(struct datadokter));
     curr = head;
     for (int i = 0; i < count; i++) {
         arr[i] = curr;
         curr = curr->next;
     }
     
-    // Fisher-Yates shuffle
-    //srand(time(NULL));
     for (int i = count - 1; i > 0; i--) {
-        int j = rand() % (i + 1);
+        int j = rand() % (i + 1); // rand() untuk mengacak indeks dokter 
         struct datadokter *temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
     
-    // Rebuild linked list dari array yang sudah diacak
+    // Buat linked list kembali dari array yang sudah diacak
     head = arr[0];
     tail = arr[count-1];
     for (int i = 0; i < count-1; i++) {
@@ -171,70 +165,63 @@ int cekPreferensi(const char *preferensi_dokter, const char *shift)
     return (strstr(preferensi_dokter, shift) != NULL);
 }
 
-int hitungPelanggaranPreferensi(char jadwal[30][3][6][100])
-{
-    int total_pelanggaran = 0;
-    char *shiftLabel[] = {"pagi", "siang", "malam"};
-    int max_dokter[] = {6, 6, 5};
+void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
+    char *shift[] = {"pagi", "siang", "malam"};
+    int maks[] = {6, 6, 5}; // Maksimal jumlah dokter per shift (pagi dan siang 6 dokter, malam 5 dokter)
+    char pola_mingguan[7][3][6][100] = {{{{0}}}}; // 
+    
+    // Array untuk mengecek apakah sudah terdapat dokter di setiap shift
+    char dokter_per_shift[3][100][100];
+    int jumlah_dokter_per_shiift[3] = {0};
 
-    for (int hari = 0; hari < 30; hari++)
-    {
-        for (int s = 0; s < 3; s++)
-        {
-            for (int d = 0; d < max_dokter[s]; d++)
-            {
-                if (strlen(jadwal[hari][s][d]) == 0)
-                    continue;
+    // Assign jadwal dokter untuk 7 hari pertama
+    for (int hari = 0; hari < 7; hari++) {
+        acakUrutanDokter();
+        
+        // Inisialisasi jumlah dokter di setiap shiftnya masih 0
+        for (int s = 0; s < 3; s++) {
+            jumlah_dokter_per_shiift[s] = 0;
+        }
 
-                struct datadokter *curr = head;
-                while (curr != NULL)
-                {
-                    if (strcmp(curr->nama, jadwal[hari][s][d]) == 0)
-                    {
-                        if (!cekPreferensi(curr->preferensi, shiftLabel[s]))
-                        {
-                            total_pelanggaran++;
-                        }
+        int count[3] = {0};
+        
+        // Alokasi berdasarkan preferensi shift dokter
+        for (int s = 0; s < 3; s++) {
+            struct datadokter *curr = head;
+            while (curr && count[s] < maks[s]) {
+                // Cek apakah dokter sudah bekerja di shift ini hari ini
+                int sudah_kerja = 0;
+                for (int i = 0; i < jumlah_dokter_per_shiift[s]; i++) {
+                    if (strcmp(dokter_per_shift[s][i], curr->nama) == 0) {
+                        sudah_kerja = 1;
                         break;
                     }
-                    curr = curr->next;
                 }
-            }
-        }
-    }
-    return total_pelanggaran;
-}
-
-void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
-    char *shiftLabel[] = {"pagi", "siang", "malam"};
-    int max_dokter[] = {6, 6, 5};
-    char pola_mingguan[7][3][6][100] = {{{{0}}}}; // Untuk menyimpan pola mingguan
-    
-    // Generate pola jadwal untuk minggu pertama
-    for (int hari = 0; hari < 7; hari++) {
-        resetShiftMingguan();
-        acakUrutanDokter(); // Acak urutan dokter setiap hari
-        
-        int count[3] = {0};
-        
-        // Alokasi berdasarkan preferensi
-        for (int s = 0; s < 3; s++) {
-            struct datadokter *curr = head;
-            while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0 && cekPreferensi(curr->preferensi, shiftLabel[s])) {
+                
+                if (!sudah_kerja && curr->shift > 0 && cekPreferensi(curr->preferensi, shift[s])) {
                     strcpy(pola_mingguan[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_per_shift[s][jumlah_dokter_per_shiift[s]++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
             }
         }
         
-        // Isi sisa slot
+        // Alokasi sisa slot dengan dokter yang belum kerja di shift ini
         for (int s = 0; s < 3; s++) {
             struct datadokter *curr = head;
-            while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0) {
+            while (curr && count[s] < maks[s]) {
+                int sudah_kerja = 0;
+                for (int i = 0; i < jumlah_dokter_per_shiift[s]; i++) {
+                    if (strcmp(dokter_per_shift[s][i], curr->nama) == 0) {
+                        sudah_kerja = 1;
+                        break;
+                    }
+                }
+                
+                if (!sudah_kerja && curr->shift > 0) {
                     strcpy(pola_mingguan[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_per_shift[s][jumlah_dokter_per_shiift[s]++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
@@ -242,55 +229,76 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
         }
     }
 
-    // Terapkan pola yang sama untuk 4 minggu (28 hari) + 2 hari tambahan
+    // Pola repetitif per minggu untuk 4 minggu (28 hari)
     for (int minggu = 0; minggu < 4; minggu++) {
         for (int hari = 0; hari < 7; hari++) {
-            int hari_aktual = minggu * 7 + hari;
-            if (hari_aktual >= 30) break;
+            int hari_ini = minggu * 7 + hari;
+            if (hari_ini >= 30) break;
             
-            // Salin jadwal dari pola mingguan
             for (int s = 0; s < 3; s++) {
-                for (int d = 0; d < max_dokter[s]; d++) {
-                    strcpy(jadwal[hari_aktual][s][d], pola_mingguan[hari][s][d]);
+                for (int d = 0; d < maks[s]; d++) {
+                    strcpy(jadwal[hari_ini][s][d], pola_mingguan[hari][s][d]);
                 }
             }
         }
     }
+    resetShiftMingguan(); // Untuk mereset minggu berikutnya
 
-    // Untuk 2 hari terakhir (jika 30 hari)
+    // Untuk sisa 2 hari
     for (int hari = 28; hari < 30; hari++) {
-        resetShiftMingguan();
-        acakUrutanDokter(); // Acak urutan dokter untuk hari tambahan
+        acakUrutanDokter();
         
+        // Inisialisasi jumlah dokter di setiap shiftnya masih 0
+        for (int s = 0; s < 3; s++) {
+            jumlah_dokter_per_shiift[s] = 0;
+        }
+
         int count[3] = {0};
         
+        // Alokasi berdasarkan preferensi shift dokter
         for (int s = 0; s < 3; s++) {
             struct datadokter *curr = head;
-            while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0 && cekPreferensi(curr->preferensi, shiftLabel[s])) {
+            while (curr && count[s] < maks[s]) {
+                // Cek apakah dokter sudah bekerja di shift ini hari ini
+                int sudah_kerja = 0; 
+                for (int i = 0; i < jumlah_dokter_per_shiift[s]; i++) {
+                    if (strcmp(dokter_per_shift[s][i], curr->nama) == 0) {
+                        sudah_kerja = 1;
+                        break;
+                    }
+                }
+                
+                if (!sudah_kerja && curr->shift > 0 && cekPreferensi(curr->preferensi, shift[s])) {
                     strcpy(jadwal[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_per_shift[s][jumlah_dokter_per_shiift[s]++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
             }
         }
         
+        // Alokasi sisa slot dengan dokter yang belum kerja di shift ini
         for (int s = 0; s < 3; s++) {
             struct datadokter *curr = head;
-            while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0) {
+            while (curr && count[s] < maks[s]) {
+                int sudah_kerja = 0;
+                for (int i = 0; i < jumlah_dokter_per_shiift[s]; i++) {
+                    if (strcmp(dokter_per_shift[s][i], curr->nama) == 0) {
+                        sudah_kerja = 1;
+                        break;
+                    }
+                }
+                
+                if (!sudah_kerja && curr->shift > 0) {
                     strcpy(jadwal[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_per_shift[s][jumlah_dokter_per_shiift[s]++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
             }
         }
     }
-    
-    //int pelanggaran = hitungPelanggaranPreferensi(jadwal);
-    //printf("\nTotal pelanggaran preferensi shift: %d\n", pelanggaran);
 }
-
 
 // =====================================================================
 // --- BAGIAN ADHI & LUNA ---
@@ -523,10 +531,10 @@ void cariJadwalDokter(const Shift jadwal[], int totalShiftTerisi, const Dokter d
 
     for (int i = 0; i < jumlahDokter; i++)
     {
-        if (strcasecmp(daftarDokter[i].nama, namaCari) == 0)
+        if (strcmp(daftarDokter[i].nama, namaCari) == 0)
         {
             idDokter = daftarDokter[i].id;
-            break; 
+            break;
         }
     }
 
