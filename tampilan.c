@@ -569,8 +569,6 @@ int main()
     printf("|   Selamat Datang di Program Penjadwalan Dokter  |\n");
     printf("=========================================\n");
 
-    // --- BLOK KODE YANG DIPERBAIKI ---
-    // Logika perulangan untuk meminta input file hingga berhasil.
     do
     {
         printf("\nMasukkan nama file sumber data dokter (contoh: datadokter.csv): ");
