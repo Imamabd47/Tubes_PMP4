@@ -204,34 +204,57 @@ int hitungPelanggaranPreferensi(char jadwal[30][3][6][100])
 
 void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
     char *shiftLabel[] = {"pagi", "siang", "malam"};
-    int max_dokter[] = {6, 6, 5};
-    char pola_mingguan[7][3][6][100] = {{{{0}}}}; // Untuk menyimpan pola mingguan
+    int max_dokter[] = {4, 4, 5};
+    char pola_mingguan[7][3][6][100] = {{{{0}}}};
     
-    // Generate pola jadwal untuk minggu pertama
+    // Array untuk melacak dokter yang sudah bekerja per hari
+    char dokter_hari_ini[100][100]; // Menyimpan nama dokter yang sudah bekerja hari ini
+    int count_dokter_hari_ini;
+
     for (int hari = 0; hari < 7; hari++) {
         resetShiftMingguan();
-        acakUrutanDokter(); // Acak urutan dokter setiap hari
+        acakUrutanDokter();
         
         int count[3] = {0};
+        count_dokter_hari_ini = 0; // Reset untuk hari baru
         
         // Alokasi berdasarkan preferensi
         for (int s = 0; s < 3; s++) {
             struct datadokter *curr = head;
             while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0 && cekPreferensi(curr->preferensi, shiftLabel[s])) {
+                // Cek apakah dokter sudah bekerja hari ini
+                int sudah_bekerja = 0;
+                for (int i = 0; i < count_dokter_hari_ini; i++) {
+                    if (strcmp(dokter_hari_ini[i], curr->nama) == 0) {
+                        sudah_bekerja = 1;
+                        break;
+                    }
+                }
+                
+                if (!sudah_bekerja && curr->shift > 0 && cekPreferensi(curr->preferensi, shiftLabel[s])) {
                     strcpy(pola_mingguan[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_hari_ini[count_dokter_hari_ini++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
             }
         }
         
-        // Isi sisa slot
+        // Isi sisa slot dengan dokter yang belum bekerja hari ini
         for (int s = 0; s < 3; s++) {
             struct datadokter *curr = head;
             while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0) {
+                int sudah_bekerja = 0;
+                for (int i = 0; i < count_dokter_hari_ini; i++) {
+                    if (strcmp(dokter_hari_ini[i], curr->nama) == 0) {
+                        sudah_bekerja = 1;
+                        break;
+                    }
+                }
+                
+                if (!sudah_bekerja && curr->shift > 0) {
                     strcpy(pola_mingguan[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_hari_ini[count_dokter_hari_ini++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
@@ -239,13 +262,12 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
         }
     }
 
-    // Terapkan pola yang sama untuk 4 minggu (28 hari) + 2 hari tambahan
+    // Terapkan pola untuk 4 minggu (28 hari) + 2 hari tambahan
     for (int minggu = 0; minggu < 4; minggu++) {
         for (int hari = 0; hari < 7; hari++) {
             int hari_aktual = minggu * 7 + hari;
             if (hari_aktual >= 30) break;
             
-            // Salin jadwal dari pola mingguan
             for (int s = 0; s < 3; s++) {
                 for (int d = 0; d < max_dokter[s]; d++) {
                     strcpy(jadwal[hari_aktual][s][d], pola_mingguan[hari][s][d]);
@@ -254,18 +276,28 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
         }
     }
 
-    // Untuk 2 hari terakhir (jika 30 hari)
+    // Untuk 2 hari terakhir
     for (int hari = 28; hari < 30; hari++) {
         resetShiftMingguan();
-        acakUrutanDokter(); // Acak urutan dokter untuk hari tambahan
+        acakUrutanDokter();
         
         int count[3] = {0};
+        count_dokter_hari_ini = 0;
         
         for (int s = 0; s < 3; s++) {
             struct datadokter *curr = head;
             while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0 && cekPreferensi(curr->preferensi, shiftLabel[s])) {
+                int sudah_bekerja = 0;
+                for (int i = 0; i < count_dokter_hari_ini; i++) {
+                    if (strcmp(dokter_hari_ini[i], curr->nama) == 0) {
+                        sudah_bekerja = 1;
+                        break;
+                    }
+                }
+                
+                if (!sudah_bekerja && curr->shift > 0 && cekPreferensi(curr->preferensi, shiftLabel[s])) {
                     strcpy(jadwal[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_hari_ini[count_dokter_hari_ini++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
@@ -275,19 +307,24 @@ void jadwalotomatis30hari(char jadwal[30][3][6][100]) {
         for (int s = 0; s < 3; s++) {
             struct datadokter *curr = head;
             while (curr && count[s] < max_dokter[s]) {
-                if (curr->shift > 0) {
+                int sudah_bekerja = 0;
+                for (int i = 0; i < count_dokter_hari_ini; i++) {
+                    if (strcmp(dokter_hari_ini[i], curr->nama) == 0) {
+                        sudah_bekerja = 1;
+                        break;
+                    }
+                }
+                
+                if (!sudah_bekerja && curr->shift > 0) {
                     strcpy(jadwal[hari][s][count[s]++], curr->nama);
+                    strcpy(dokter_hari_ini[count_dokter_hari_ini++], curr->nama);
                     curr->shift--;
                 }
                 curr = curr->next;
             }
         }
     }
-    
-    //int pelanggaran = hitungPelanggaranPreferensi(jadwal);
-    //printf("\nTotal pelanggaran preferensi shift: %d\n", pelanggaran);
 }
-
 
 // =====================================================================
 // --- BAGIAN ADHI & LUNA ---
