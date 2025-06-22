@@ -12,6 +12,10 @@
     extern struct pegawai *first ; //Data_pegawai paling pertama
     void input_string(char *arr);
     int input_integer();
+    void eror();
+    void reset();
+    void load_valid(char *nama_file,int jadwal_maker_param);
+    void Tampil(char *nama_file);
     int input_integer_positif();
     void printBanner(const char *text, char border, int totalWidth);
     void Database();

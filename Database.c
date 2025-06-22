@@ -243,23 +243,28 @@ void list2file(char *nama_file){
 }
 
 //Membuat File dari List untuk output File yang digunakan ke algoritma pengacakan
-void list2file_output(char *nama_file_raw){
+void list2file_output(char *nama_file_raw,int jadwal_maker_param){
     struct pegawai *temp = first;
     FILE *a;
     a = fopen("Data_Dokter.csv","w");
-    fprintf(a,"Raw:%s\n\"Nama\",\"shift_maks\",\"Preferensi_shift\"\n",nama_file_raw);
+    fprintf(a,"Status_Param:,%d,%s\n\"Nama\",\"shift_maks\",\"Preferensi_shift\"\n",jadwal_maker_param,nama_file_raw);
     while (temp!= NULL){
         fprintf(a,"%s,%d,%s\n",temp->nama,temp->maks_shift,temp->preferensi_shift);
         temp = temp->next;
     }
     fclose(a);
-    printf("Data telah tersimpan dalam file %s!!\n\n","Data_Dokter.csv");
 }
 
 //Fungsi Status Display
-void status_disp(char *nama_file,int *choice){
-    printf("Status:\nFile Yang Dimuat< %s\n\nPerintah< ",nama_file);
-    *choice = input_integer();
+void status_disp(char *nama_file,int jadwal_maker_param,int *choice){
+    if (jadwal_maker_param){
+        printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< %s\n\nPerintah< ",nama_file,"SAVE");
+        *choice = input_integer();
+    }
+    else{
+        printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< %s\n\nPerintah< ",nama_file,"UNSAVE");
+        *choice = input_integer();
+    }
 }
 
 //Mengubah File Menjadi Linked List*
@@ -300,7 +305,7 @@ void file2list(char *data){
 }
 
 //Fungsi utama Ambil data dari file csv*
-void load_data(char *nama_file,char *nama_file_default){
+void load_data(char *nama_file,char *nama_file_default,int *jadwal_maker_param,int *jadwalDibuat){
     if (strcasecmp(nama_file,"NONE")==0){
         eror();
     }
@@ -314,20 +319,28 @@ void load_data(char *nama_file,char *nama_file_default){
             strcpy(nama_file,nama_file_default);
             while (choice!=2&&choice!=1){
                 printf("Apakah ingin membuat file baru??\n[1]Ya\n[2]Tidak\n\n");
-                status_disp(nama_file,&choice);
+                status_disp(nama_file,*jadwal_maker_param,&choice);
                 switch (choice){
                 case 2:
                     printf("\n");
                     break;
                 case 1:
                     reset();
+                    FILE *a;
+                    a = fopen("Jadwal_Dokter.csv","w");
+                    if (a!=NULL){
+                        fprintf(a,"idDokter,Hari,Tipe_Shift,Nama_Dokter\n");
+                        fclose(a);
+                    }
+                    *jadwal_maker_param= 0;
+                    *jadwalDibuat = 0;
                     printf("\nMasukkan nama File yang ingin dibuat< ");
                     input_string(nama_file);printf("\n");
                     strcpy(nama_file_default,nama_file);
                     csv1 = fopen(nama_file,"w");
                     fprintf(csv1,"\"nama\",\"shift_maks\",\"Pagi\",\"Siang\",\"Malam\"\n");
                     fclose(csv1);
-                    list2file_output(nama_file);
+                    list2file_output(nama_file,*jadwal_maker_param);
                     break;
                 default:
                     printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n\n");
@@ -337,6 +350,10 @@ void load_data(char *nama_file,char *nama_file_default){
         }
         else{
             reset();
+            if (strcasecmp(nama_file,nama_file_default)!=0){
+                *jadwal_maker_param = 0;
+            }
+            *jadwalDibuat=0;
             strcpy(nama_file_default,nama_file);
             fgets(data,256,csv1);
             while (fgets(data,256,csv1)!=NULL){
@@ -344,9 +361,31 @@ void load_data(char *nama_file,char *nama_file_default){
             }
             printf("Data Berhasi Dimuat!!\n\n");
             fclose(csv1);
-            list2file_output(nama_file_default);
+            list2file_output(nama_file_default,*jadwal_maker_param);
+            FILE *a;
+            a = fopen("Jadwal_Dokter.csv","w");
+            if (a!=NULL){
+                fprintf(a,"idDokter,Hari,Tipe_Shift,Nama_Dokter\n");
+                fclose(a);
+            }   
+            printf("Data telah tersimpan dalam file %s!!\n\n","Data_Dokter.csv");
         }
     }
+}
+
+//Load khusus buat di valid
+void  load_valid(char *nama_file,int jadwal_maker_param){
+    FILE *csv1;
+    csv1 = fopen(nama_file,"r");
+    char data[256];
+    fgets(data,256,csv1);
+    while (fgets(data,256,csv1)!=NULL){
+        file2list(data);
+    }
+    fclose(csv1);
+    
+    list2file_output(nama_file,jadwal_maker_param);
+    reset();
 }
 
 //Fungsi Utama Menampilkan linked list*
@@ -377,7 +416,7 @@ void Tampil(char *nama_file){
 }
 
 //Fungsi Menambah data*
-void tambah(char *nama_file){
+void tambah(char *nama_file,int jadwal_maker_param,int *jadwalDibuat){
     struct pegawai *temp = malloc(sizeof(struct pegawai));
     char response[100];
     if (Data_Pegawai == NULL){
@@ -402,12 +441,13 @@ void tambah(char *nama_file){
     Data_Pegawai = temp;
     printf("Data pegawai atas nama %s berhasil ditambahkan\n\n",temp->nama);
     //Update data dokter
-    list2file_output(nama_file);
+    list2file_output(nama_file,jadwal_maker_param);
     list2file(nama_file);
+    *jadwalDibuat = 0;
 }
 
 //Fungsi Menghapus Data*
-void hapus(char *nama_file){
+void hapus(char *nama_file,int jadwal_maker_param,int *jadwalDibuat){
     if (Data_Pegawai == NULL){
        printf("\nFile masih belum memiliki data!!");
     }
@@ -473,15 +513,17 @@ void hapus(char *nama_file){
             }
             //Menyimpan ke output
             printf("\nData pegawai atas nama %s berhasil dihapus",temp->nama);
-            list2file_output(nama_file);
+            jadwal_maker_param = 0;
+            list2file_output(nama_file,jadwal_maker_param);
             list2file(nama_file);
+            *jadwalDibuat = 0;
             free(temp);
         }
     }  
 }
 
 //Fungsi Utama dari Edit*
-void edit(char *nama_file){
+void edit(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat){
     if (strcasecmp(nama_file,"NONE")==0){
         eror();
     }
@@ -491,11 +533,13 @@ void edit(char *nama_file){
         choice = input_integer();
         switch (choice){
         case 2:
-            hapus(nama_file);
+            *jadwal_maker_param = 0;                
+            hapus(nama_file,*jadwal_maker_param,jadwalDibuat);
             printf("\n");
             break;
         case 1:
-            tambah(nama_file);
+            *jadwal_maker_param = 0;    
+            tambah(nama_file,*jadwal_maker_param,jadwalDibuat);
             printf("\n");
             break;
         case 0:
@@ -503,7 +547,7 @@ void edit(char *nama_file){
             break;  
         default:
             printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n");
-            edit(nama_file);
+            edit(nama_file,jadwal_maker_param,jadwalDibuat);
             break;
         }
     }
@@ -520,14 +564,16 @@ void Fitur_display(){
 }
 
 //Simpan Nama dari file
-void Load_Nama_File(char *nama_file,char *nama_file_default){
+void Load_Nama_File(char *nama_file,char *nama_file_default,int *jadwal_maker_param){
     FILE *csv;
     csv = fopen("Data_Dokter.csv","r");
     if (csv != NULL){
         char *token;
         char buffer[100];
         fgets(buffer,100,csv);
-        token = strtok(buffer,":");token=strtok(NULL,":");
+        token = strtok(buffer,",");token=strtok(NULL,",");
+        sscanf(token,"%d",jadwal_maker_param);
+        token=strtok(NULL,",");
         int i=0;
         while (1){
             if (*(token+i)=='\n'){
@@ -549,49 +595,62 @@ void Load_Nama_File(char *nama_file,char *nama_file_default){
         while (fgets(data,256,csv1)!=NULL){
                 file2list(data);
             }
-        list2file_output(nama_file);
+        list2file_output(nama_file,*jadwal_maker_param);
         fclose(csv1);
     }
 }
 
-void reset_data(char *nama_file,char *nama_file_default){
+void reset_data(char *nama_file,char *nama_file_default,int *jadwal_maker_param){
     if (strcasecmp(nama_file,"NONE")!=0){
+        *jadwal_maker_param = 0;
         reset();
         strcpy(nama_file,"NONE");
         strcpy(nama_file_default,nama_file);
-        list2file_output(nama_file);
+        list2file_output(nama_file,*jadwal_maker_param);
+        FILE *a;
+        a = fopen("Jadwal_Dokter.csv","w");
+        if (a!=NULL){
+            fprintf(a,"idDokter,Hari,Tipe_Shift,Nama_Dokter\n");
+            printf("\n\nData dalam file %s dan %s telah berhasil di reset!!\n\n","Data_Dokter.csv","Jadwal_Dokter.csv");
+            fclose(a);
+        }
+        else{
+            printf("\n\nData dalam file %s telah berhasil di reset!!\n\n","Data_Dokter.csv");
+        }
+        
     }
     else{
         eror();
     }
 }
 
-
 //Buat Masukin ke main utama
-void Database(){
-    int input ;
+void Database(int *JadwalDibuat){
+    int input=1 ;
+    int jadwal_maker_param = 0;
     char nama_file[100]="NONE";
     char nama_file_default[100] ="NONE";
-    Load_Nama_File(nama_file,nama_file_default);
+    Load_Nama_File(nama_file,nama_file_default,&jadwal_maker_param);
     printBanner("!!!DATABASE PUSAT!!!",'*',136);
-    Fitur_display();
-    status_disp(nama_file,&input);
     while(input!=0){
+        Fitur_display();
+        status_disp(nama_file,jadwal_maker_param,&input);
         switch (input){
         case 1:
             //Memasukkan nama file
-            printf("\nMasukkan nama file pegawai< ");
+            printf("\nMasukkan nama data file Dokter< ");
             input_string(nama_file);
-            load_data(nama_file,nama_file_default);
+            load_data(nama_file,nama_file_default,&jadwal_maker_param,JadwalDibuat);
             break;
         case 2:
             Tampil(nama_file);
             break;
         case 3:
-            edit(nama_file);
+            edit(nama_file,&jadwal_maker_param,JadwalDibuat);
             break;
         case 4:
-            reset_data(nama_file,nama_file_default);
+            reset_data(nama_file,nama_file_default,&jadwal_maker_param);
+            *JadwalDibuat = 0;
             break;
         case 0:
             reset();
@@ -600,8 +659,6 @@ void Database(){
             printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n\n");
             break;
         }
-        Fitur_display();
-        status_disp(nama_file,&input);
     }   
 }
 

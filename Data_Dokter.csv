@@ -1,51 +1,33 @@
-Raw:Data_Pegawai2.csv
+Status_Param:,1,Data_Dokter1.csv
 "Nama","shift_maks","Preferensi_shift"
-Superman,20,pagi siang
-Batman,8,malam
-Wonder Woman,10,pagi siang malam
-The Flash,12,pagi siang
-Green Lantern,9,siang malam
-Aquaman,7,pagi malam
-Spider-Man,8,pagi siang
-Iron Man,10,pagi siang malam
-Captain America,9,pagi siang
-Thor,18,siang malam
-Hulk,15,siang
-Black Widow,7,pagi malam
-Hawkeye,6,pagi siang
-Doctor Strange,14,siang malam
-Black Panther,9,pagi malam
-Captain Marvel,21,pagi siang malam
-Ant-Man,6,pagi
-Wolverine,11,siang malam
-Deadpool,7,pagi siang malam
-Shazam,12,pagi siang
-Green Arrow,6,pagi malam
-Martian Manhunter,13,siang malam
-Daredevil,7,malam
-Luke Cage,8,pagi siang
-Jessica Jones,6,siang malam
-Iron Fist,7,pagi malam
-The Punisher,5,malam
-Ghost Rider,9,malam
-Blade,8,malam
-Cyclops,7,pagi siang
-Jean Grey (Phoenix),21,pagi siang malam
-Storm,10,siang malam
-Professor X,5,pagi siang
-Nightcrawler,6,siang malam
-Beast,7,pagi siang
-Gambit,6,pagi malam
-Rogue,9,pagi siang
-Scarlet Witch,17,siang malam
-Vision,12,pagi siang malam
-Falcon,7,pagi siang
-Winter Soldier,7,pagi malam
-Star-Lord,6,siang malam
-Gamora,8,pagi siang
-Drax the Destroyer,9,pagi
-Rocket Raccoon,5,pagi siang malam
-Groot,10,pagi siang
-Thanos,21,siang malam
-Doctor Doom,15,pagi malam
-Hellboy,9,siang malam
+Prof. Dr. Ir. Pekik Argo Dahono,7,pagi malam
+Dr. Ir. Jaka Sembiring M.Eng.,8,pagi siang
+Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.,6,pagi siang malam
+Dr. Tutun Juhana S.T. M.T.,9,pagi
+Dr. Trio Adiono S.T. M.T.,7,siang
+Dr. Waskita Adijarto S.T. M.T.,8,pagi siang
+Prof. Dr. Ir. Adit Kurniawan M.Eng.,5,pagi
+Dr. Ary Setijadi Prihatmanto S.T. M.T.,10,pagi siang malam
+Dr. M. Ridwan Effendi S.T. M.Sc.,7,siang malam
+Prof. Dr. Nana Rachmana Syambas,6,pagi siang
+Dr. Yusep Rosmansyah S.T. M.Sc.,8,pagi
+Dr. Ayu Purwarianti S.T. M.T.,7,pagi siang
+Dr. Saiful Akbar S.T. M.T.,9,siang malam
+Dr. Dwi H. Widyantoro S.T. M.T.,8,pagi siang
+Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.,5,pagi
+Dr. Rila Mandala S.T. M.Eng.,7,pagi siang malam
+Dr. Ing. Eueung Mulyana S.T. M.Sc.,8,siang
+Dr. Ir. I Gusti Bagus Baskara Nugraha,9,pagi siang
+Dr. Nugraha S.T. M.T.,7,pagi malam
+Dr. Adi Indrayanto S.T. M.T.,8,pagi siang
+Dr. Irma Savitri S.T. M.T. Ph.D.,6,siang
+Dr. Aciek Ida Wuryandari S.T. M.T.,7,pagi siang
+Dr. Afwarman M.Sc.,8,pagi malam
+Dr. Kridanto Surendro M.Sc.,9,pagi siang malam
+Dr. Yoanes Bandung S.T. M.T.,7,siang
+Dr. techn. Saiful Anwar S.T. M.T.,8,pagi siang
+Dr. F.X. Nugroho Soelami M.B.A.,6,pagi
+Dr. Ir. Arry Akhmad Arman MT.,7,pagi siang
+Dr. Hilwadi Hindersah S.T. M.T.,9,pagi malam
+Dr. Reza Rawassizadeh Ph.D.,8,siang malam
+Dr. Ir. Rinaldi Munir M.T.,10,pagi siang

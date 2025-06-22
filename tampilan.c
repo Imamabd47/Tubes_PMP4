@@ -68,16 +68,17 @@ void tambahNode(char *nama, int shift, char *preferensi)
     }
 }
 
-void readFile(const char *namaFileInput)
+void readFile()
 {
-    FILE *fptr = fopen(namaFileInput, "r");
+    FILE *fptr = fopen("Data_Dokter.csv", "r");
     if (!fptr)
     {
         printf("File tidak dapat dibuka. \n");
         return;
     }
     char buf[256];
-    while (fgets(buf, sizeof(buf), fptr))
+    fgets(buf, sizeof(buf), fptr);fgets(buf, sizeof(buf), fptr);
+    while (fgets(buf, sizeof(buf), fptr)!=NULL)
     {
         if (strlen(buf) > 0 && buf[strlen(buf) - 1] == '\n')
             buf[strlen(buf) - 1] = '\0';
@@ -581,6 +582,15 @@ void Menu()
     printf("=========================================\n");
 }
 
+//Buat jadwal otomatis
+void Jadwal_maker(char jadwalOtomatis[30][3][6][100], Shift *jadwalFinal,Dokter *daftarDokter,int *jumlahDokter,int *totalShiftTerisi,int *jadwalSudahDibuat){
+    printf("\nMembuat jadwal baru...\n");
+    jadwalotomatis30hari(jadwalOtomatis);
+    *totalShiftTerisi = konversiJadwal(jadwalOtomatis, jadwalFinal, daftarDokter, *jumlahDokter);
+    *jadwalSudahDibuat = 1;
+    printf("Jadwal telah berhasil dibuat.\n");
+} 
+
 int main()
 {
     char jadwalOtomatis[30][3][6][100] = {0};
@@ -596,13 +606,8 @@ int main()
     printf("|   Selamat Datang di Program Penjadwalan Dokter  |\n");
     printf("=========================================\n");
 
-    do
-    {
-        printf("\nMasukkan nama file sumber data dokter (contoh: datadokter.csv): ");
-        scanf(" %[^\n]", namaFileInput);
-        bersihkanBuffer();
-        readFile(namaFileInput);
-
+    do{
+        readFile();
         if (head == NULL)
         {
             printf("[!] Gagal memuat data. Pastikan nama file benar dan file tidak kosong. Silakan coba lagi.\n");
@@ -632,11 +637,7 @@ int main()
             tampilkanDokter();
             break;
         case 2:
-            printf("\nMembuat jadwal baru...\n");
-            jadwalotomatis30hari(jadwalOtomatis);
-            totalShiftTerisi = konversiJadwal(jadwalOtomatis, jadwalFinal, daftarDokter, jumlahDokter);
-            jadwalSudahDibuat = 1;
-            printf("Jadwal telah berhasil dibuat.\n");
+            Jadwal_maker(jadwalOtomatis,jadwalFinal,daftarDokter,&jumlahDokter,&totalShiftTerisi,&jadwalSudahDibuat);
             break;
         case 3:
         case 4:
