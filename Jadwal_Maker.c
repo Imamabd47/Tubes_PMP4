@@ -409,7 +409,7 @@ void fitur_display_jadwal(int *choice,char *nama_file,int jadwal_maker_param){
     *choice = input_integer();
 }
 
-//Fungsi menu_jadwal_maker
+//Fungsi menu_jadwal_maker : UTAMA BAGIAN OJAN DAN DZIKRI
 void menu_jadwal_maker(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat){
     int choice=1;
     readFile();
@@ -709,7 +709,7 @@ void fitur_display_lihatJadwal(int *choice,char *nama_file,int jadwal_maker_para
     *choice = input_integer();
 }
 
-//Fungsi Menut Utama Lihat Jadwal
+//Fungsi Menut Utama Lihat Jadwal : UTAMA BAGIAN LUNA DAN ADI
 void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
     int choice=1;
     int hari,minggu;
