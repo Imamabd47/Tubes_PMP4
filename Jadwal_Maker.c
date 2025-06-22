@@ -459,7 +459,7 @@ const char *getNamaShift(TipeShift tipe)
     }
 }
 
-void tampilkanJadwalHarian(int hari, const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[])
+void tampilkanJadwalHarian(int hari)
 {
     if (hari < 1 || hari > 30)
     {
@@ -473,9 +473,9 @@ void tampilkanJadwalHarian(int hari, const Shift jadwal[], int totalShiftTerisi,
         int count = 0;
         for (int i = 0; i < totalShiftTerisi; i++)
         {
-            if (jadwal[i].hari == hari && jadwal[i].tipe == (TipeShift)s)
+            if (jadwalFinal[i].hari == hari && jadwalFinal[i].tipe == (TipeShift)s)
             {
-                printf("%s; ", daftarDokter[jadwal[i].id_dokter].nama);
+                printf("%s; ", daftarDokter[jadwalFinal[i].id_dokter].nama);
                 count++;
             }
         }
@@ -485,7 +485,7 @@ void tampilkanJadwalHarian(int hari, const Shift jadwal[], int totalShiftTerisi,
     }
 }
 
-void tampilkanJadwalMingguan(int minggu, const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[])
+void tampilkanJadwalMingguan(int minggu)
 {
     if (minggu < 1 || minggu > 5)
     {
@@ -512,11 +512,11 @@ void tampilkanJadwalMingguan(int minggu, const Shift jadwal[], int totalShiftTer
     {
         if (h > 30)
             break;
-        tampilkanJadwalHarian(h, jadwal, totalShiftTerisi, daftarDokter);
+        tampilkanJadwalHarian(h);
     }
 }
 
-void tampilkanJadwalSebulan(const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[])
+void tampilkanJadwalSebulan()
 {
     printf("\n\n*************************************************");
     printf("\n*** TAMPILAN JADWAL SEBULAN PENUH ***");
@@ -526,11 +526,11 @@ void tampilkanJadwalSebulan(const Shift jadwal[], int totalShiftTerisi, const Do
         int hariMulai = (m - 1) * 7 + 1;
         if (hariMulai > 30)
             break;
-        tampilkanJadwalMingguan(m, jadwal, totalShiftTerisi, daftarDokter);
+        tampilkanJadwalMingguan(m);
     }
 }
 
-void tampilkanLaporanPelanggaran(const Dokter daftarDokter[], int jumlahDokter)
+void tampilkanLaporanPelanggaran()
 {
     printf("\n--- Laporan Detail Pelanggaran Preferensi Shift ---\n");
     int totalPelanggaran = 0;
@@ -558,24 +558,23 @@ void tampilkanLaporanPelanggaran(const Dokter daftarDokter[], int jumlahDokter)
     }
 }
 
-void simpanJadwalKeCSV(const char *namaFile, const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[])
-{
-    FILE *fptr = fopen(namaFile, "w");
+void simpanJadwalKeCSV(){
+    FILE *fptr = fopen("Jadwal_Dokter.csv", "w");
     if (!fptr)
     {
-        printf("ERROR: Tidak dapat membuat file '%s' untuk penulisan.\n", namaFile);
+        printf("ERROR: Tidak dapat membuat file '%s' untuk penulisan.\n", "Jadwal_Dokter.csv");
         return;
     }
 
-    printf("\nMenyimpan jadwal ke file '%s'", namaFile);
+    printf("\nMenyimpan jadwal ke file '%s'", "Jadwal_Dokter.csv");
 
     fprintf(fptr, "idDokter,Hari,Tipe_Shift,Nama_Dokter\n");
 
     for (int i = 0; i < totalShiftTerisi; i++)
     {
-        int hari = jadwal[i].hari;
-        const char *namaShift = getNamaShift(jadwal[i].tipe);
-        int idDokter = jadwal[i].id_dokter;
+        int hari = jadwalFinal[i].hari;
+        const char *namaShift = getNamaShift(jadwalFinal[i].tipe);
+        int idDokter = jadwalFinal[i].id_dokter;
         if (idDokter >= 0) 
         {
 
@@ -589,7 +588,7 @@ void simpanJadwalKeCSV(const char *namaFile, const Shift jadwal[], int totalShif
     printf(" Berhasil.\n");
 }
 
-void cariJadwalDokter(const Shift jadwal[], int totalShiftTerisi, const Dokter daftarDokter[], int jumlahDokter)
+void cariJadwalDokter()
 {
     char namaCari[100];
     int idDokter = -1;
@@ -617,9 +616,9 @@ void cariJadwalDokter(const Shift jadwal[], int totalShiftTerisi, const Dokter d
     printf("\n--- Jadwal Jaga Lengkap untuk Dr. %s ---\n", daftarDokter[idDokter].nama);
     for (int i = 0; i < totalShiftTerisi; i++)
     {
-        if (jadwal[i].id_dokter == idDokter)
+        if (jadwalFinal[i].id_dokter == idDokter)
         {
-            printf(" -> Hari ke-%-2d, Shift %s\n", jadwal[i].hari, getNamaShift(jadwal[i].tipe));
+            printf(" -> Hari ke-%-2d, Shift %s\n", jadwalFinal[i].hari, getNamaShift(jadwalFinal[i].tipe));
             shiftDitemukan++;
         }
     }
@@ -726,24 +725,24 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
             case 1:
                 printf("Masukkan hari (1-30): ");
                 hari = input_integer_positif();
-                tampilkanJadwalHarian(hari, jadwalFinal, totalShiftTerisi, daftarDokter);
+                tampilkanJadwalHarian(hari);
                 break;
             case 2:
                 printf("Masukkan minggu (1-5): ");
                 minggu = input_integer_positif();
-                tampilkanJadwalMingguan(minggu, jadwalFinal, totalShiftTerisi, daftarDokter);
+                tampilkanJadwalMingguan(minggu);
                 break;
             case 3:
-                tampilkanJadwalSebulan(jadwalFinal, totalShiftTerisi, daftarDokter);
+                tampilkanJadwalSebulan();
                 break;
             case 4:
-                cariJadwalDokter(jadwalFinal, totalShiftTerisi, daftarDokter, jumlahDokter);
+                cariJadwalDokter();
                 break;
             case 5:
-                tampilkanLaporanPelanggaran(daftarDokter, jumlahDokter);
+                tampilkanLaporanPelanggaran();
                 break;
             case 6:
-                simpanJadwalKeCSV("Jadwal_Dokter.csv", jadwalFinal, totalShiftTerisi, daftarDokter);
+                simpanJadwalKeCSV();
                 *jadwal_maker_param = 1;
                 bersihkanMemori();
                 load_valid(nama_file,*jadwal_maker_param);    
