@@ -1,5 +1,5 @@
 "Nama","shift_maks","Pagi","Siang","Malam"
-Superman,20,1,1,0
+Superman,21,1,1,0
 Batman,8,0,0,1
 Wonder Woman,10,1,1,1
 The Flash,12,1,1,0
@@ -47,4 +47,3 @@ Rocket Raccoon,5,1,1,1
 Groot,10,1,1,0
 Thanos,21,0,1,1
 Doctor Doom,15,1,0,1
-Hellboy,9,0,1,1

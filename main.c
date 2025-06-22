@@ -11,22 +11,24 @@
 #define RED    "\x1b[31m"
 #define YELLOW  "\x1b[93m"
 #define F_YELLOW  "\x1b[33m"
-
+#define GREEN   "\x1b[32m"
 //Fungsi untuk display Fitur
 void fitur_display(int *choice,char *nama_file,int jadwal_maker_param){
     printf("\nSilahkan pilih Opsi Dari bagian berikut!!\n");
-    printf("[1]%-35s||"BOLD ITALIC RED"Untuk masuk kedalam sistem database\n"RESET,"Database");
-    printf("[2]%-35s||"BOLD ITALIC RED"Untuk masuk kedalam sistem pembuatan jadwal\n"RESET,"Buat Jadwal");
-    printf("[3]%-35s||"BOLD ITALIC RED"Untuk melihat jadwal yang sudah dibuat\n"RESET,"Lihat Jadwal");
+    printf("[1]%-35s||"BOLD ITALIC GREEN"Untuk masuk kedalam sistem database\n"RESET,"Database");
+    printf("[2]%-35s||"BOLD ITALIC GREEN"Untuk masuk kedalam sistem pembuatan jadwal\n"RESET,"Buat Jadwal");
+    printf("[3]%-35s||"BOLD ITALIC GREEN"Untuk melihat jadwal yang sudah dibuat\n"RESET,"Lihat Jadwal");
     printf("[0]Keluar\n\n");
-    if (jadwal_maker_param) printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< SAVE\n\nPerintah< ",nama_file);
-    else printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< UNSAVE\n\nPerintah< ",nama_file);
+    if (strcasecmp(nama_file,"NONE")==0) printf("Status:\nFile Yang Dimuat< "RED"%s\n"RESET,nama_file);
+    else printf("Status:\nFile Yang Dimuat< "GREEN"%s\n"RESET,nama_file);
+    if (jadwal_maker_param) printf("Jadwal Tersimpan< "GREEN"SAVE\n\n"RESET"Perintah< ");
+    else printf("Jadwal Tersimpan< "RED"UNSAVE\n\n"RESET"Perintah< ",nama_file);
     *choice = input_integer();
 }
 
 //Fungsi untuk memberi pesan eror ketika data dokter  kurang yang menyebabkan fitur 2 & 3 tidak bisa digunakan
 void eror1(){
-    printf("\nData dokter kurang, Fitur ini Tidak bisa digunakan!!\n\n");
+    printf(RED"\nData dokter kurang, Fitur ini Tidak bisa digunakan!!\n\n"RESET);
 }
 
 //Fungsi untuk mengecek apakah fitur "Lihat jadwal", "Buat Jadwal" available
@@ -91,7 +93,7 @@ void lihat_jadwal(char *nama_file,int *jadwal_maker_param, int jadwalDibuat){
     if (jadwalDibuat||*jadwal_maker_param){
         menu_lihat_jadwal(nama_file,jadwal_maker_param);
     }
-    else printf("\nBelum membuat jadwal, Fitur ini Tidak bisa digunakan!!\n\n");
+    else printf(RED"\nBelum membuat jadwal, Fitur ini Tidak bisa digunakan!!\n\n"RESET);
 }
 
 int main(){
@@ -100,9 +102,9 @@ int main(){
     int jadwalDibuat = 0;
     int jadwal_maker_param = 0;
     int fitur_param[2] = {0};
+    cetak_bingkai("!!!FITUR UTAMA!!!");
     avail(nama_file,nama_file_default,fitur_param,&jadwal_maker_param);
-    printBanner("Selamat Datang",'=',136);
-    int choice;
+    int choice=1;
     fitur_display(&choice,nama_file,jadwal_maker_param);
     while (choice!=0){
         switch (choice){
@@ -113,12 +115,18 @@ int main(){
             buat_jadwal(fitur_param,nama_file,&jadwal_maker_param,&jadwalDibuat);
             break;
         case 3:
+            printf("\n");
             lihat_jadwal(nama_file,&jadwal_maker_param,jadwalDibuat);
             break;
+        case 0:
+            reset();
+            break;
         default:
+            printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
             break;
         }
         avail(nama_file,nama_file_default,fitur_param,&jadwal_maker_param);
+        printBanner("!!!FITUR UTAMA!!!",'*',136);
         fitur_display(&choice,nama_file,jadwal_maker_param);
     }
 }

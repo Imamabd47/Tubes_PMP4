@@ -3,12 +3,14 @@
 #include <string.h>
 #include <strings.h>
 #include <ctype.h>
+#include "Jadwal_Maker.h"
 #define ITALIC "\x1b[3m"
 #define RESET  "\x1b[0m"
 #define BOLD   "\x1b[1m"
 #define RED    "\x1b[31m"
 #define YELLOW  "\x1b[93m"
 #define F_YELLOW  "\x1b[33m"
+#define GREEN   "\x1b[32m"
 
 //Struct
 
@@ -61,7 +63,7 @@ int input_integer() {
             int i = 0;
             // Cek string kosong
             if (buffer[0] == '\0') {
-                printf("Input tidak boleh kosong. Silakan coba lagi.\n");
+                printf(RED"Input tidak boleh kosong. Silakan coba lagi.\n"RESET);
                 printf("\nperintah< ");
                 continue;
             }
@@ -73,7 +75,7 @@ int input_integer() {
             for (; i < (int)strlen(buffer); i++) {
                 if (!isdigit(buffer[i])) {
                     valid = 0;
-                    printf("Input harus berupa angka bulat.\n");
+                    printf(RED"Input harus berupa angka bulat.\n"RESET);
                     printf("\nperintah< ");
                     break;
                 }
@@ -85,7 +87,7 @@ int input_integer() {
             }
         }
         else {
-            printf("Terjadi kesalahan input. Silakan coba lagi.\n");
+            printf(RED"Terjadi kesalahan input. Silakan coba lagi.\n"RESET);
             printf("\nperintah< ");
             // Clear error stdin
             clearerr(stdin);
@@ -107,7 +109,7 @@ int input_integer_positif() {
 
             // Cek apakah string kosong
             if (buffer[0] == '\0') {
-                printf("Input tidak boleh kosong. Silakan coba lagi.\n");
+                printf(RED"\nInput tidak boleh kosong. Silakan coba lagi.\n"RESET);
                 printf("\nMasukkan jumlah maksimal shift yang disanggupi pegawai< ");
                 continue;
             }
@@ -117,7 +119,7 @@ int input_integer_positif() {
             for (; buffer[i] != '\0'; i++) {
                 if (!isdigit(buffer[i])) {
                     isValid = 0;
-                    printf("Input harus berupa angka bulat positif.\n");
+                    printf(RED"\nInput harus berupa angka bulat positif.\n"RESET);
                     printf("\nMasukkan jumlah maksimal shift yang disanggupi pegawai< ");
                     break;
                 }
@@ -126,7 +128,7 @@ int input_integer_positif() {
             if (isValid) {
                 hasil = atoi(buffer);
                 if (hasil <= 0) {
-                    printf("Input harus lebih besar dari nol.\n");
+                    printf(RED"\nInput harus lebih besar dari nol.\n"RESET);
                     printf("\nMasukkan jumlah maksimal shift yang disanggupi pegawai< ");
                     isValid = 0;
                 } else {
@@ -134,7 +136,7 @@ int input_integer_positif() {
                 }
             }
         } else {
-            printf("Terjadi kesalahan input. Silakan coba lagi.\n");
+            printf(RED"\nTerjadi kesalahan input. Silakan coba lagi.\n"RESET);
             printf("\nMasukkan jumlah maksimal shift yang disanggupi pegawai< ");
             clearerr(stdin); // reset status error stdin
         }
@@ -144,7 +146,7 @@ int input_integer_positif() {
 
 // Eror Display kalo blm ada file dimuat **
 void eror(){
-    printf("\nBelum ada File yang dimuat, Fitur Tidak bisa digunakan!!\n\n");
+    printf(RED"\nBelum ada File yang dimuat, Fitur Tidak bisa digunakan!!\n\n"RESET);
 }
 
 //Untuk Menghapus semua link list yang tersimpan**
@@ -257,12 +259,14 @@ void list2file_output(char *nama_file_raw,int jadwal_maker_param){
 
 //Fungsi Status Display
 void status_disp(char *nama_file,int jadwal_maker_param,int *choice){
+    if (strcasecmp(nama_file,"NONE")==0) printf("Status:\nFile Yang Dimuat< "RED"%s\n"RESET,nama_file);
+    else printf("Status:\nFile Yang Dimuat< "GREEN"%s\n"RESET,nama_file);
     if (jadwal_maker_param){
-        printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< %s\n\nPerintah< ",nama_file,"SAVE");
+        printf("Jadwal Tersimpan< "GREEN"%s\n\n"RESET"Perintah< ","SAVE");
         *choice = input_integer();
     }
     else{
-        printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< %s\n\nPerintah< ",nama_file,"UNSAVE");
+        printf("Jadwal Tersimpan< "RED"%s\n\n"RESET"Perintah< ","UNSAVE");
         *choice = input_integer();
     }
 }
@@ -315,7 +319,7 @@ void load_data(char *nama_file,char *nama_file_default,int *jadwal_maker_param,i
         csv1 = fopen(nama_file,"r");
         if (csv1 == NULL){
             int choice=0;
-            printf("Data belum ada, Tidak Berhasil Memuat File!!\n\n");
+            printf(RED"\nData belum ada, Tidak Berhasil Memuat File!!\n\n"RESET);
             strcpy(nama_file,nama_file_default);
             while (choice!=2&&choice!=1){
                 printf("Apakah ingin membuat file baru??\n[1]Ya\n[2]Tidak\n\n");
@@ -343,7 +347,7 @@ void load_data(char *nama_file,char *nama_file_default,int *jadwal_maker_param,i
                     list2file_output(nama_file,*jadwal_maker_param);
                     break;
                 default:
-                    printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n\n");
+                    printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n\n"RESET);
                     break;
                 }
             }
@@ -394,7 +398,7 @@ void Tampil(char *nama_file){
         eror();
     }
     else if (Data_Pegawai == NULL){
-        printf("\nFile masih belum memiliki data!!\n\n");
+        printf(RED"\nFile masih belum memiliki data!!\n\n"RESET);
     }
     else{
         struct pegawai *temp = first;
@@ -449,7 +453,7 @@ void tambah(char *nama_file,int jadwal_maker_param,int *jadwalDibuat){
 //Fungsi Menghapus Data*
 void hapus(char *nama_file,int jadwal_maker_param,int *jadwalDibuat){
     if (Data_Pegawai == NULL){
-       printf("\nFile masih belum memiliki data!!");
+       printf(RED"\nFile masih belum memiliki data!!"RESET);
     }
     else{
         int kembali = 0;
@@ -482,7 +486,7 @@ void hapus(char *nama_file,int jadwal_maker_param,int *jadwalDibuat){
                 kembali= 1;
             }
             if (!find){
-                printf("\nNama yang ingin dihapus tidak terdaftar dalam data!!\n");
+                printf(RED"\nNama yang ingin dihapus tidak terdaftar dalam data!!\n"RESET);
             }
         }
         if (!kembali){
@@ -512,7 +516,7 @@ void hapus(char *nama_file,int jadwal_maker_param,int *jadwalDibuat){
                 temp_r -> before = temp_l;
             }
             //Menyimpan ke output
-            printf("\nData pegawai atas nama %s berhasil dihapus",temp->nama);
+            printf("\nData pegawai atas nama %s berhasil dihapus'n",temp->nama);
             jadwal_maker_param = 0;
             list2file_output(nama_file,jadwal_maker_param);
             list2file(nama_file);
@@ -546,7 +550,7 @@ void edit(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat){
             printf("\n");
             break;  
         default:
-            printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n");
+            printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
             edit(nama_file,jadwal_maker_param,jadwalDibuat);
             break;
         }
@@ -556,11 +560,11 @@ void edit(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat){
 //Fungsi untuk menampilkan arahan fitur*
 void Fitur_display(){
     printf("Perintah yang bisa anda Masukkan!!!\n");
-    printf("[1]%-35s||"BOLD ITALIC RED"Untuk memuat file Kedalam Sistem\n"RESET,"Muat File");
-    printf("[2]%-35s||"BOLD ITALIC RED"Untuk menampilkan isi data yang dimuat\n"RESET,"Tampilkan Data");
-    printf("[3]%-35s||"BOLD ITALIC RED"Untuk mengedit data\n"RESET,"Edit Data");
-    printf("[4]%-35s||"BOLD ITALIC RED"Untuk menghapus data yang di-muat\n"RESET,"Reset Data");
-    printf("[0]%-35s||"BOLD ITALIC RED"Untuk kembali ke fitur utama\n\n"RESET,"Keluar Database");
+    printf("[1]%-35s||"BOLD ITALIC GREEN"Untuk memuat file Kedalam Sistem\n"RESET,"Muat File");
+    printf("[2]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan isi data yang dimuat\n"RESET,"Tampilkan Data");
+    printf("[3]%-35s||"BOLD ITALIC GREEN"Untuk mengedit data\n"RESET,"Edit Data");
+    printf("[4]%-35s||"BOLD ITALIC GREEN"Untuk menghapus data yang di-muat\n"RESET,"Reset Data");
+    printf("[0]%-35s||"BOLD ITALIC GREEN"Untuk kembali ke fitur utama\n\n"RESET,"Keluar Database");
 }
 
 //Simpan Nama dari file
@@ -627,14 +631,14 @@ void reset_data(char *nama_file,char *nama_file_default,int *jadwal_maker_param)
 //Buat Masukin ke main utama
 void Database(int *JadwalDibuat){
     int input=1 ;
+    cetak_bingkai("SELAMAT DATANG DI DATABASE PUSAT");
     int jadwal_maker_param = 0;
     char nama_file[100]="NONE";
     char nama_file_default[100] ="NONE";
     Load_Nama_File(nama_file,nama_file_default,&jadwal_maker_param);
-    printBanner("!!!DATABASE PUSAT!!!",'*',136);
+    Fitur_display();
+    status_disp(nama_file,jadwal_maker_param,&input);
     while(input!=0){
-        Fitur_display();
-        status_disp(nama_file,jadwal_maker_param,&input);
         switch (input){
         case 1:
             //Memasukkan nama file
@@ -656,9 +660,12 @@ void Database(int *JadwalDibuat){
             reset();
             break;
         default:
-            printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n\n");
+            printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
             break;
         }
+        printBanner("!!!DATABASE PUSAT!!!",'*',136);
+        Fitur_display();
+        status_disp(nama_file,jadwal_maker_param,&input);
     }   
 }
 

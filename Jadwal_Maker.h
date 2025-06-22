@@ -32,7 +32,7 @@
     extern struct datadokter *tail ;
     extern struct datadokter *current ;
     extern int jadwalSudahDibuat ;
-    
+    void cetak_bingkai(const char *judul);
     void menu_jadwal_maker(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat);
     void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param);
 #endif

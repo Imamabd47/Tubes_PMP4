@@ -8,7 +8,7 @@
 #define RED    "\x1b[31m"
 #define YELLOW  "\x1b[93m"
 #define F_YELLOW  "\x1b[33m"
-
+#define GREEN   "\x1b[32m"
 // =====================================================================
 // --- BAGIAN PENDEFINISIAN DAN INISIASI STRUCT ---
 // =====================================================================
@@ -55,6 +55,29 @@ int totalShiftTerisi = 0;
 // =====================================================================
 // --- BAGIAN OJAN & DZIKRI ---//Jadwal Maker
 // =====================================================================
+
+void cetak_bingkai(const char *judul) {
+    const int panjang_total = 136;  // Total panjang baris
+    int panjang_judul = strlen(judul);
+    int sisa = panjang_total - 8 - panjang_judul;  // 8 karakter untuk "// ---  ---"
+    int kiri = sisa / 2;
+    int kanan = sisa - kiri;
+
+    // Baris atas
+    for (int i = 0; i < panjang_total; i++) printf("=");
+    printf("\n");
+
+    // Baris judul
+    printf("// ");
+    for (int i = 0; i < kiri; i++) printf("-");
+    printf(YELLOW BOLD" %s "RESET, judul);
+    for (int i = 0; i < kanan; i++) printf("-");
+    printf(" //\n");
+
+    // Baris bawah
+    for (int i = 0; i < panjang_total; i++) printf("=");
+    printf("\n");
+}
 
 void tambahNode(char *nama, int shift, char *preferensi)
 {
@@ -401,20 +424,24 @@ void jadwal_maker(){
 //Fungsi Fitur Display
 void fitur_display_jadwal(int *choice,char *nama_file,int jadwal_maker_param){
     printf("\nSilahkan pilih Opsi Dari bagian berikut!!\n");
-    printf("[1]%-35s||"BOLD ITALIC RED"Untuk melihat data\n"RESET,"Tampilkan Data");
-    printf("[2]%-35s||"BOLD ITALIC RED"Untuk masuk kedalam sistem pembuatan jadwal\n"RESET,"Buat Jadwal Otomatis 30 Hari");
-    printf("[0]%-35s||"BOLD ITALIC RED"Untuk kembali ke menu utama\n\n"RESET,"Keluar Jadwal_Maker");
-    if (jadwal_maker_param) printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< SAVE\n\nPerintah< ",nama_file);
-    else printf("Status:\nFile Yang Dimuat< %s\nJadwal Tersimpan< UNSAVE\n\nPerintah< ",nama_file);
+    printf("[1]%-35s||"BOLD ITALIC GREEN"Untuk melihat data\n"RESET,"Tampilkan Data");
+    printf("[2]%-35s||"BOLD ITALIC GREEN"Untuk masuk kedalam sistem pembuatan jadwal\n"RESET,"Buat Jadwal Otomatis 30 Hari");
+    printf("[0]%-35s||"BOLD ITALIC GREEN"Untuk kembali ke menu utama\n\n"RESET,"Keluar Jadwal_Maker");
+    if (strcasecmp(nama_file,"NONE")==0) printf("Status:\nFile Yang Dimuat< "RED"%s\n"RESET,nama_file);
+    else printf("Status:\nFile Yang Dimuat< "GREEN"%s\n"RESET,nama_file);
+    if (jadwal_maker_param) printf("Jadwal Tersimpan< "GREEN"SAVE\n\n"RESET"Perintah< ");
+    else printf("Jadwal Tersimpan< "RED"UNSAVE\n\n"RESET"Perintah< ",nama_file);
     *choice = input_integer();
 }
 
 //Fungsi menu_jadwal_maker : UTAMA BAGIAN OJAN DAN DZIKRI
 void menu_jadwal_maker(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat){
     int choice=1;
+    bersihkanMemori();
     readFile();
+    cetak_bingkai("MENU BUAT JADWAL!!!");
+    fitur_display_jadwal(&choice,nama_file,*jadwal_maker_param);
     while (choice!=0){
-        fitur_display_jadwal(&choice,nama_file,*jadwal_maker_param);
         switch (choice){
         case 1:
             tampilkanDokter();
@@ -425,9 +452,11 @@ void menu_jadwal_maker(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat
             load_valid(nama_file,*jadwal_maker_param);
             break;
         default:
-            printf("Perintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n");
+            printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
             break;
         }
+        printBanner("MENU BUAT JADWAL",'*',136);
+        fitur_display_jadwal(&choice,nama_file,*jadwal_maker_param);
         *jadwalDibuat = jadwalSudahDibuat;
     }
 }
@@ -459,37 +488,69 @@ const char *getNamaShift(TipeShift tipe)
     }
 }
 
-void tampilkanJadwalHarian(int hari)
-{
-    if (hari < 1 || hari > 30)
-    {
-        printf("Hari tidak valid.\n");
-        return;
-    }
-    printf("\n--- Jadwal Jaga Hari ke-%d ---\n", hari);
-    for (int s = 0; s < 3; s++)
-    {
-        printf("Shift %-5s : ", getNamaShift((TipeShift)s));
-        int count = 0;
-        for (int i = 0; i < totalShiftTerisi; i++)
-        {
-            if (jadwalFinal[i].hari == hari && jadwalFinal[i].tipe == (TipeShift)s)
-            {
-                printf("%s; ", daftarDokter[jadwalFinal[i].id_dokter].nama);
-                count++;
+void tampilkanJadwalHarian(int hari) {
+    const int LEBAR_TOTAL = 137;
+
+    // 1. Cetak Header dengan Nomor Hari
+    char headerText[100];
+    sprintf(headerText, BOLD YELLOW" JADWAL JAGA HARI KE-%d "RESET, hari);
+    int lenHeaderText = strlen(headerText);
+    int padding = ((LEBAR_TOTAL - lenHeaderText)+16) / 2;
+
+    for (int i = 0; i < LEBAR_TOTAL; i++) { printf("="); }
+    printf("\n");
+    printf("%*s%s\n", padding, "", headerText);
+    for (int i = 0; i < LEBAR_TOTAL; i++) { printf("-"); }
+    printf("\n");
+
+    // 2. Loop untuk setiap shift
+    for (int s = 0; s < 3; s++) { // s=0 (Pagi), s=1 (Siang), s=2 (Malam)
+        
+        // Siapkan buffer untuk menampung daftar nama dokter
+        char daftarNamaBuffer[1000] = {0}; // Inisialisasi ke nol agar string kosong
+        int dokterDitemukan = 0;
+
+        // Loop melalui semua data jadwal yang ada
+        for (int i = 0; i < totalShiftTerisi; i++) {
+            // KONDISI PENTING: cocokkan hari DAN tipe shift
+            if (jadwalFinal[i].hari == hari && jadwalFinal[i].tipe == (TipeShift)s) {
+                // Jika cocok, tambahkan nama dokter ke buffer
+                strcat(daftarNamaBuffer, daftarDokter[jadwalFinal[i].id_dokter].nama);
+                strcat(daftarNamaBuffer, "; ");
+                dokterDitemukan++;
             }
         }
-        if (count == 0)
-            printf("(Kosong)");
-        printf("\n");
+        
+        // Siapkan string konten akhir yang akan dicetak
+        char kontenCetak[1000];
+        if (dokterDitemukan == 0) {
+            strcpy(kontenCetak, "(Kosong)");
+        } else {
+            // Hapus "; " di akhir string agar lebih rapi
+            daftarNamaBuffer[strlen(daftarNamaBuffer) - 2] = '\0';
+            strcpy(kontenCetak, daftarNamaBuffer);
+        }
+
+        // 3. Cetak baris yang sudah diformat dengan rapi
+        char prefix[30];
+        sprintf(prefix, "| Shift %-5s : ", getNamaShift((TipeShift)s));
+        
+        int sisaRuang = LEBAR_TOTAL - strlen(prefix) - 2; // -2 untuk '|' di awal dan akhir
+        
+        printf("%s", prefix);
+        printf("%-*s |\n", sisaRuang, kontenCetak);
     }
+
+    // 4. Cetak garis bawah
+    for (int i = 0; i < LEBAR_TOTAL; i++) { printf("="); }
+    printf("\n\n");
 }
 
 void tampilkanJadwalMingguan(int minggu)
 {
     if (minggu < 1 || minggu > 5)
     {
-        printf("Minggu tidak valid.\n");
+        printf(RED"Minggu tidak valid.\n"RESET);
         return;
     }
     int hariMulai = (minggu - 1) * 7 + 1;
@@ -504,10 +565,9 @@ void tampilkanJadwalMingguan(int minggu)
         hariSelesai = hariMulai + 6;
     }
 
-    printf("\n\n===============================================");
-    printf("\n--- JADWAL MINGGU KE-%d (HARI %d s/d %d) ---", minggu, hariMulai, hariSelesai);
-    printf("\n===============================================\n");
-
+    char buffer[256];
+    sprintf(buffer,"--- JADWAL MINGGU KE-%d (HARI %d s/d %d) ---", minggu, hariMulai, hariSelesai);
+    printBanner(buffer,'*',137);
     for (int h = hariMulai; h <= hariSelesai; h++)
     {
         if (h > 30)
@@ -518,9 +578,7 @@ void tampilkanJadwalMingguan(int minggu)
 
 void tampilkanJadwalSebulan()
 {
-    printf("\n\n*************************************************");
-    printf("\n*** TAMPILAN JADWAL SEBULAN PENUH ***");
-    printf("\n*************************************************\n");
+    cetak_bingkai("*** TAMPILAN JADWAL SEBULAN PENUH ***");
     for (int m = 1; m <= 5; m++)
     {
         int hariMulai = (m - 1) * 7 + 1;
@@ -696,15 +754,17 @@ void muat_jadwal() {
 //Fungsi fitur display lihat jadwal
 void fitur_display_lihatJadwal(int *choice,char *nama_file,int jadwal_maker_param){
     printf("\nSilahkan pilih Opsi Dari bagian berikut!!\n");
-    printf("[1]%-35s||"BOLD ITALIC RED"Untuk menampilkan jadwal per hari\n"RESET,"Tampilkan Jadwal Harian");
-    printf("[2]%-35s||"BOLD ITALIC RED"Untuk menampilkan jadwal per minggu\n"RESET,"Tampilkan Jadwal Mingguan");
-    printf("[3]%-35s||"BOLD ITALIC RED"Untuk menampilkan jadwal per bulan\n"RESET,"Tampilkan Jadwal Sebulan Penuh");
-    printf("[4]%-35s||"BOLD ITALIC RED"Untuk menampilkan jadwal per dokter\n"RESET,"Cari Jadwal Dokter");
-    printf("[5]%-35s||"BOLD ITALIC RED"Untuk menampilkan jadwal per minggu\n"RESET,"Laporan pelanggaran");
-    printf("[6]%-35s||"BOLD ITALIC RED"Untuk menyimpan jadwal ke dalam csv\n"RESET,"Simpan Jadwal ke File CSV");
-    printf("[0]%-35s||"BOLD ITALIC RED"Untuk kembali ke menu utama\n\n"RESET,"Keluar lihat jadwal");
-    if (jadwal_maker_param) printf("Status:\nFile Yang Dimuat< %s\nBuat Jadwal< DONE\n\nPerintah< ",nama_file);
-    else printf("Status:\nFile Yang Dimuat< %s\nBuat Jadwal< UNDONE\n\nPerintah< ",nama_file);
+    printf("[1]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per hari\n"RESET,"Tampilkan Jadwal Harian");
+    printf("[2]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per minggu\n"RESET,"Tampilkan Jadwal Mingguan");
+    printf("[3]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per bulan\n"RESET,"Tampilkan Jadwal Sebulan Penuh");
+    printf("[4]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per dokter\n"RESET,"Cari Jadwal Dokter");
+    printf("[5]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per minggu\n"RESET,"Laporan pelanggaran");
+    printf("[6]%-35s||"BOLD ITALIC GREEN"Untuk menyimpan jadwal ke dalam csv\n"RESET,"Simpan Jadwal ke File CSV");
+    printf("[0]%-35s||"BOLD ITALIC GREEN"Untuk kembali ke menu utama\n\n"RESET,"Keluar lihat jadwal");
+    if (strcasecmp(nama_file,"NONE")==0) printf("Status:\nFile Yang Dimuat< "RED"%s\n"RESET,nama_file);
+    else printf("Status:\nFile Yang Dimuat< "GREEN"%s\n"RESET,nama_file);
+    if (jadwal_maker_param) printf("Jadwal Tersimpan< "GREEN"SAVE\n\n"RESET"Perintah< ");
+    else printf("Jadwal Tersimpan< "RED"UNSAVE\n\n"RESET"Perintah< ");
     *choice = input_integer();
 }
 
@@ -713,14 +773,15 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
     int choice=1;
     int hari,minggu;
     if (!jadwalSudahDibuat&&!(*(jadwal_maker_param))){
-        printf(RED BOLD"\n[!] Silakan buat jadwal terlebih dahulu\n" RESET);
+        printf(RED "\n[!] Silakan buat jadwal terlebih dahulu\n" RESET);
     }
     else {
+        cetak_bingkai("MENU LIHAT JADWAL!!!");
         if (!jadwalSudahDibuat){
             muat_jadwal();
         }
+        fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
         while (choice!=0){
-            fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
             switch (choice){
             case 1:
                 printf("Masukkan hari (1-30): ");
@@ -749,9 +810,13 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
                 break;
             case 0:
                 bersihkanMemori();
+                break;
             default:
+                printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
                 break;
             }
+        printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
+        fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
         }
     }
 }
