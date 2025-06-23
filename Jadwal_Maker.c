@@ -831,7 +831,6 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
         if (!jadwalSudahDibuat){
             muat_jadwal();
         }
-        printf("%d",totalShiftTerisi);
         while (choice!=0){
             fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
             switch (choice){
@@ -867,7 +866,7 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
                 break;
             case 0:
                 bersihkanMemori();
-                totalShiftTerisi = 0;
+                read_param = 0;
                 break;
             default:
                 printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
