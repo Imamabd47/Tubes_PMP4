@@ -421,6 +421,13 @@ void jadwal_maker(){
     jadwalSudahDibuat = 1;
     printf("Jadwal telah berhasil dibuat.\n");
     bersihkanMemori();
+    //Mereset Jadwal_Dokter.csv
+    FILE *csv;
+    csv = fopen("Jadwal_Dokter.csv","w");
+    if (csv!=NULL){
+        fprintf(csv,"idDokter,Hari,Tipe_Shift,Nama_Dokter\n");
+        fclose(csv);
+    }
 }
 
 //Fungsi Fitur Display
@@ -796,43 +803,48 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
         if (!jadwalSudahDibuat){
             muat_jadwal();
         }
-        fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
         while (choice!=0){
+            fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
             switch (choice){
             case 1:
                 printf("Masukkan hari (1-30): ");
                 hari = input_integer_positif();
                 tampilkanJadwalHarian(hari);
+                printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             case 2:
                 printf("Masukkan minggu (1-5): ");
                 minggu = input_integer_positif();
                 tampilkanJadwalMingguan(minggu);
+                printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             case 3:
                 tampilkanJadwalSebulan();
+                printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             case 4:
                 cariJadwalDokter();
+                printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             case 5:
                 tampilkanLaporanPelanggaran();
+                printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             case 6:
                 simpanJadwalKeCSV();
                 *jadwal_maker_param = 1;
                 bersihkanMemori();
                 load_valid(nama_file,*jadwal_maker_param);    
+                printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             case 0:
                 bersihkanMemori();
                 break;
             default:
                 printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
+                printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             }
-        printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
-        fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
         }
     }
 }

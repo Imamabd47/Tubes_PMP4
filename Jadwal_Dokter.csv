@@ -1,1 +1,511 @@
 idDokter,Hari,Tipe_Shift,Nama_Dokter
+16,1,Pagi,Ant-Man
+6,1,Pagi,Spider-Man
+45,1,Pagi,Groot
+14,1,Pagi,Black Panther
+20,1,Pagi,Green Arrow
+47,1,Pagi,Doctor Doom
+6,1,Siang,Spider-Man
+10,1,Siang,Hulk
+21,1,Siang,Martian Manhunter
+45,1,Siang,Groot
+17,1,Siang,Wolverine
+9,1,Siang,Thor
+1,1,Malam,Batman
+22,1,Malam,Daredevil
+21,1,Malam,Martian Manhunter
+28,1,Malam,Blade
+14,1,Malam,Black Panther
+2,2,Pagi,Wonder Woman
+43,2,Pagi,Drax the Destroyer
+11,2,Pagi,Black Widow
+16,2,Pagi,Ant-Man
+25,2,Pagi,Iron Fist
+14,2,Pagi,Black Panther
+2,2,Siang,Wonder Woman
+46,2,Siang,Thanos
+21,2,Siang,Martian Manhunter
+17,2,Siang,Wolverine
+4,2,Siang,Green Lantern
+7,2,Siang,Iron Man
+2,2,Malam,Wonder Woman
+46,2,Malam,Thanos
+1,2,Malam,Batman
+21,2,Malam,Martian Manhunter
+22,2,Malam,Daredevil
+47,3,Pagi,Doctor Doom
+44,3,Pagi,Rocket Raccoon
+2,3,Pagi,Wonder Woman
+25,3,Pagi,Iron Fist
+23,3,Pagi,Luke Cage
+32,3,Pagi,Professor X
+4,3,Siang,Green Lantern
+41,3,Siang,Star-Lord
+33,3,Siang,Nightcrawler
+9,3,Siang,Thor
+44,3,Siang,Rocket Raccoon
+2,3,Siang,Wonder Woman
+4,3,Malam,Green Lantern
+41,3,Malam,Star-Lord
+33,3,Malam,Nightcrawler
+9,3,Malam,Thor
+47,3,Malam,Doctor Doom
+6,4,Pagi,Spider-Man
+29,4,Pagi,Cyclops
+43,4,Pagi,Drax the Destroyer
+19,4,Pagi,Shazam
+40,4,Pagi,Winter Soldier
+23,4,Pagi,Luke Cage
+6,4,Siang,Spider-Man
+29,4,Siang,Cyclops
+19,4,Siang,Shazam
+23,4,Siang,Luke Cage
+41,4,Siang,Star-Lord
+4,4,Siang,Green Lantern
+40,4,Malam,Winter Soldier
+22,4,Malam,Daredevil
+1,4,Malam,Batman
+41,4,Malam,Star-Lord
+47,4,Malam,Doctor Doom
+32,5,Pagi,Professor X
+29,5,Pagi,Cyclops
+39,5,Pagi,Falcon
+35,5,Pagi,Gambit
+14,5,Pagi,Black Panther
+6,5,Pagi,Spider-Man
+32,5,Siang,Professor X
+13,5,Siang,Doctor Strange
+46,5,Siang,Thanos
+29,5,Siang,Cyclops
+39,5,Siang,Falcon
+33,5,Siang,Nightcrawler
+13,5,Malam,Doctor Strange
+46,5,Malam,Thanos
+26,5,Malam,The Punisher
+33,5,Malam,Nightcrawler
+37,5,Malam,Scarlet Witch
+29,6,Pagi,Cyclops
+47,6,Pagi,Doctor Doom
+39,6,Pagi,Falcon
+2,6,Pagi,Wonder Woman
+5,6,Pagi,Aquaman
+36,6,Pagi,Rogue
+29,6,Siang,Cyclops
+39,6,Siang,Falcon
+2,6,Siang,Wonder Woman
+33,6,Siang,Nightcrawler
+36,6,Siang,Rogue
+42,6,Siang,Gamora
+47,6,Malam,Doctor Doom
+2,6,Malam,Wonder Woman
+33,6,Malam,Nightcrawler
+5,6,Malam,Aquaman
+27,6,Malam,Ghost Rider
+45,7,Pagi,Groot
+38,7,Pagi,Vision
+25,7,Pagi,Iron Fist
+44,7,Pagi,Rocket Raccoon
+29,7,Pagi,Cyclops
+19,7,Pagi,Shazam
+45,7,Siang,Groot
+13,7,Siang,Doctor Strange
+17,7,Siang,Wolverine
+38,7,Siang,Vision
+46,7,Siang,Thanos
+44,7,Siang,Rocket Raccoon
+28,7,Malam,Blade
+13,7,Malam,Doctor Strange
+17,7,Malam,Wolverine
+38,7,Malam,Vision
+46,7,Malam,Thanos
+16,8,Pagi,Ant-Man
+6,8,Pagi,Spider-Man
+45,8,Pagi,Groot
+14,8,Pagi,Black Panther
+20,8,Pagi,Green Arrow
+47,8,Pagi,Doctor Doom
+6,8,Siang,Spider-Man
+10,8,Siang,Hulk
+21,8,Siang,Martian Manhunter
+45,8,Siang,Groot
+17,8,Siang,Wolverine
+9,8,Siang,Thor
+1,8,Malam,Batman
+22,8,Malam,Daredevil
+21,8,Malam,Martian Manhunter
+28,8,Malam,Blade
+14,8,Malam,Black Panther
+2,9,Pagi,Wonder Woman
+43,9,Pagi,Drax the Destroyer
+11,9,Pagi,Black Widow
+16,9,Pagi,Ant-Man
+25,9,Pagi,Iron Fist
+14,9,Pagi,Black Panther
+2,9,Siang,Wonder Woman
+46,9,Siang,Thanos
+21,9,Siang,Martian Manhunter
+17,9,Siang,Wolverine
+4,9,Siang,Green Lantern
+7,9,Siang,Iron Man
+2,9,Malam,Wonder Woman
+46,9,Malam,Thanos
+1,9,Malam,Batman
+21,9,Malam,Martian Manhunter
+22,9,Malam,Daredevil
+47,10,Pagi,Doctor Doom
+44,10,Pagi,Rocket Raccoon
+2,10,Pagi,Wonder Woman
+25,10,Pagi,Iron Fist
+23,10,Pagi,Luke Cage
+32,10,Pagi,Professor X
+4,10,Siang,Green Lantern
+41,10,Siang,Star-Lord
+33,10,Siang,Nightcrawler
+9,10,Siang,Thor
+44,10,Siang,Rocket Raccoon
+2,10,Siang,Wonder Woman
+4,10,Malam,Green Lantern
+41,10,Malam,Star-Lord
+33,10,Malam,Nightcrawler
+9,10,Malam,Thor
+47,10,Malam,Doctor Doom
+6,11,Pagi,Spider-Man
+29,11,Pagi,Cyclops
+43,11,Pagi,Drax the Destroyer
+19,11,Pagi,Shazam
+40,11,Pagi,Winter Soldier
+23,11,Pagi,Luke Cage
+6,11,Siang,Spider-Man
+29,11,Siang,Cyclops
+19,11,Siang,Shazam
+23,11,Siang,Luke Cage
+41,11,Siang,Star-Lord
+4,11,Siang,Green Lantern
+40,11,Malam,Winter Soldier
+22,11,Malam,Daredevil
+1,11,Malam,Batman
+41,11,Malam,Star-Lord
+47,11,Malam,Doctor Doom
+32,12,Pagi,Professor X
+29,12,Pagi,Cyclops
+39,12,Pagi,Falcon
+35,12,Pagi,Gambit
+14,12,Pagi,Black Panther
+6,12,Pagi,Spider-Man
+32,12,Siang,Professor X
+13,12,Siang,Doctor Strange
+46,12,Siang,Thanos
+29,12,Siang,Cyclops
+39,12,Siang,Falcon
+33,12,Siang,Nightcrawler
+13,12,Malam,Doctor Strange
+46,12,Malam,Thanos
+26,12,Malam,The Punisher
+33,12,Malam,Nightcrawler
+37,12,Malam,Scarlet Witch
+29,13,Pagi,Cyclops
+47,13,Pagi,Doctor Doom
+39,13,Pagi,Falcon
+2,13,Pagi,Wonder Woman
+5,13,Pagi,Aquaman
+36,13,Pagi,Rogue
+29,13,Siang,Cyclops
+39,13,Siang,Falcon
+2,13,Siang,Wonder Woman
+33,13,Siang,Nightcrawler
+36,13,Siang,Rogue
+42,13,Siang,Gamora
+47,13,Malam,Doctor Doom
+2,13,Malam,Wonder Woman
+33,13,Malam,Nightcrawler
+5,13,Malam,Aquaman
+27,13,Malam,Ghost Rider
+45,14,Pagi,Groot
+38,14,Pagi,Vision
+25,14,Pagi,Iron Fist
+44,14,Pagi,Rocket Raccoon
+29,14,Pagi,Cyclops
+19,14,Pagi,Shazam
+45,14,Siang,Groot
+13,14,Siang,Doctor Strange
+17,14,Siang,Wolverine
+38,14,Siang,Vision
+46,14,Siang,Thanos
+44,14,Siang,Rocket Raccoon
+28,14,Malam,Blade
+13,14,Malam,Doctor Strange
+17,14,Malam,Wolverine
+38,14,Malam,Vision
+46,14,Malam,Thanos
+16,15,Pagi,Ant-Man
+6,15,Pagi,Spider-Man
+45,15,Pagi,Groot
+14,15,Pagi,Black Panther
+20,15,Pagi,Green Arrow
+47,15,Pagi,Doctor Doom
+6,15,Siang,Spider-Man
+10,15,Siang,Hulk
+21,15,Siang,Martian Manhunter
+45,15,Siang,Groot
+17,15,Siang,Wolverine
+9,15,Siang,Thor
+1,15,Malam,Batman
+22,15,Malam,Daredevil
+21,15,Malam,Martian Manhunter
+28,15,Malam,Blade
+14,15,Malam,Black Panther
+2,16,Pagi,Wonder Woman
+43,16,Pagi,Drax the Destroyer
+11,16,Pagi,Black Widow
+16,16,Pagi,Ant-Man
+25,16,Pagi,Iron Fist
+14,16,Pagi,Black Panther
+2,16,Siang,Wonder Woman
+46,16,Siang,Thanos
+21,16,Siang,Martian Manhunter
+17,16,Siang,Wolverine
+4,16,Siang,Green Lantern
+7,16,Siang,Iron Man
+2,16,Malam,Wonder Woman
+46,16,Malam,Thanos
+1,16,Malam,Batman
+21,16,Malam,Martian Manhunter
+22,16,Malam,Daredevil
+47,17,Pagi,Doctor Doom
+44,17,Pagi,Rocket Raccoon
+2,17,Pagi,Wonder Woman
+25,17,Pagi,Iron Fist
+23,17,Pagi,Luke Cage
+32,17,Pagi,Professor X
+4,17,Siang,Green Lantern
+41,17,Siang,Star-Lord
+33,17,Siang,Nightcrawler
+9,17,Siang,Thor
+44,17,Siang,Rocket Raccoon
+2,17,Siang,Wonder Woman
+4,17,Malam,Green Lantern
+41,17,Malam,Star-Lord
+33,17,Malam,Nightcrawler
+9,17,Malam,Thor
+47,17,Malam,Doctor Doom
+6,18,Pagi,Spider-Man
+29,18,Pagi,Cyclops
+43,18,Pagi,Drax the Destroyer
+19,18,Pagi,Shazam
+40,18,Pagi,Winter Soldier
+23,18,Pagi,Luke Cage
+6,18,Siang,Spider-Man
+29,18,Siang,Cyclops
+19,18,Siang,Shazam
+23,18,Siang,Luke Cage
+41,18,Siang,Star-Lord
+4,18,Siang,Green Lantern
+40,18,Malam,Winter Soldier
+22,18,Malam,Daredevil
+1,18,Malam,Batman
+41,18,Malam,Star-Lord
+47,18,Malam,Doctor Doom
+32,19,Pagi,Professor X
+29,19,Pagi,Cyclops
+39,19,Pagi,Falcon
+35,19,Pagi,Gambit
+14,19,Pagi,Black Panther
+6,19,Pagi,Spider-Man
+32,19,Siang,Professor X
+13,19,Siang,Doctor Strange
+46,19,Siang,Thanos
+29,19,Siang,Cyclops
+39,19,Siang,Falcon
+33,19,Siang,Nightcrawler
+13,19,Malam,Doctor Strange
+46,19,Malam,Thanos
+26,19,Malam,The Punisher
+33,19,Malam,Nightcrawler
+37,19,Malam,Scarlet Witch
+29,20,Pagi,Cyclops
+47,20,Pagi,Doctor Doom
+39,20,Pagi,Falcon
+2,20,Pagi,Wonder Woman
+5,20,Pagi,Aquaman
+36,20,Pagi,Rogue
+29,20,Siang,Cyclops
+39,20,Siang,Falcon
+2,20,Siang,Wonder Woman
+33,20,Siang,Nightcrawler
+36,20,Siang,Rogue
+42,20,Siang,Gamora
+47,20,Malam,Doctor Doom
+2,20,Malam,Wonder Woman
+33,20,Malam,Nightcrawler
+5,20,Malam,Aquaman
+27,20,Malam,Ghost Rider
+45,21,Pagi,Groot
+38,21,Pagi,Vision
+25,21,Pagi,Iron Fist
+44,21,Pagi,Rocket Raccoon
+29,21,Pagi,Cyclops
+19,21,Pagi,Shazam
+45,21,Siang,Groot
+13,21,Siang,Doctor Strange
+17,21,Siang,Wolverine
+38,21,Siang,Vision
+46,21,Siang,Thanos
+44,21,Siang,Rocket Raccoon
+28,21,Malam,Blade
+13,21,Malam,Doctor Strange
+17,21,Malam,Wolverine
+38,21,Malam,Vision
+46,21,Malam,Thanos
+16,22,Pagi,Ant-Man
+6,22,Pagi,Spider-Man
+45,22,Pagi,Groot
+14,22,Pagi,Black Panther
+20,22,Pagi,Green Arrow
+47,22,Pagi,Doctor Doom
+6,22,Siang,Spider-Man
+10,22,Siang,Hulk
+21,22,Siang,Martian Manhunter
+45,22,Siang,Groot
+17,22,Siang,Wolverine
+9,22,Siang,Thor
+1,22,Malam,Batman
+22,22,Malam,Daredevil
+21,22,Malam,Martian Manhunter
+28,22,Malam,Blade
+14,22,Malam,Black Panther
+2,23,Pagi,Wonder Woman
+43,23,Pagi,Drax the Destroyer
+11,23,Pagi,Black Widow
+16,23,Pagi,Ant-Man
+25,23,Pagi,Iron Fist
+14,23,Pagi,Black Panther
+2,23,Siang,Wonder Woman
+46,23,Siang,Thanos
+21,23,Siang,Martian Manhunter
+17,23,Siang,Wolverine
+4,23,Siang,Green Lantern
+7,23,Siang,Iron Man
+2,23,Malam,Wonder Woman
+46,23,Malam,Thanos
+1,23,Malam,Batman
+21,23,Malam,Martian Manhunter
+22,23,Malam,Daredevil
+47,24,Pagi,Doctor Doom
+44,24,Pagi,Rocket Raccoon
+2,24,Pagi,Wonder Woman
+25,24,Pagi,Iron Fist
+23,24,Pagi,Luke Cage
+32,24,Pagi,Professor X
+4,24,Siang,Green Lantern
+41,24,Siang,Star-Lord
+33,24,Siang,Nightcrawler
+9,24,Siang,Thor
+44,24,Siang,Rocket Raccoon
+2,24,Siang,Wonder Woman
+4,24,Malam,Green Lantern
+41,24,Malam,Star-Lord
+33,24,Malam,Nightcrawler
+9,24,Malam,Thor
+47,24,Malam,Doctor Doom
+6,25,Pagi,Spider-Man
+29,25,Pagi,Cyclops
+43,25,Pagi,Drax the Destroyer
+19,25,Pagi,Shazam
+40,25,Pagi,Winter Soldier
+23,25,Pagi,Luke Cage
+6,25,Siang,Spider-Man
+29,25,Siang,Cyclops
+19,25,Siang,Shazam
+23,25,Siang,Luke Cage
+41,25,Siang,Star-Lord
+4,25,Siang,Green Lantern
+40,25,Malam,Winter Soldier
+22,25,Malam,Daredevil
+1,25,Malam,Batman
+41,25,Malam,Star-Lord
+47,25,Malam,Doctor Doom
+32,26,Pagi,Professor X
+29,26,Pagi,Cyclops
+39,26,Pagi,Falcon
+35,26,Pagi,Gambit
+14,26,Pagi,Black Panther
+6,26,Pagi,Spider-Man
+32,26,Siang,Professor X
+13,26,Siang,Doctor Strange
+46,26,Siang,Thanos
+29,26,Siang,Cyclops
+39,26,Siang,Falcon
+33,26,Siang,Nightcrawler
+13,26,Malam,Doctor Strange
+46,26,Malam,Thanos
+26,26,Malam,The Punisher
+33,26,Malam,Nightcrawler
+37,26,Malam,Scarlet Witch
+29,27,Pagi,Cyclops
+47,27,Pagi,Doctor Doom
+39,27,Pagi,Falcon
+2,27,Pagi,Wonder Woman
+5,27,Pagi,Aquaman
+36,27,Pagi,Rogue
+29,27,Siang,Cyclops
+39,27,Siang,Falcon
+2,27,Siang,Wonder Woman
+33,27,Siang,Nightcrawler
+36,27,Siang,Rogue
+42,27,Siang,Gamora
+47,27,Malam,Doctor Doom
+2,27,Malam,Wonder Woman
+33,27,Malam,Nightcrawler
+5,27,Malam,Aquaman
+27,27,Malam,Ghost Rider
+45,28,Pagi,Groot
+38,28,Pagi,Vision
+25,28,Pagi,Iron Fist
+44,28,Pagi,Rocket Raccoon
+29,28,Pagi,Cyclops
+19,28,Pagi,Shazam
+45,28,Siang,Groot
+13,28,Siang,Doctor Strange
+17,28,Siang,Wolverine
+38,28,Siang,Vision
+46,28,Siang,Thanos
+44,28,Siang,Rocket Raccoon
+28,28,Malam,Blade
+13,28,Malam,Doctor Strange
+17,28,Malam,Wolverine
+38,28,Malam,Vision
+46,28,Malam,Thanos
+3,29,Pagi,The Flash
+30,29,Pagi,Jean Grey (Phoenix)
+8,29,Pagi,Captain America
+25,29,Pagi,Iron Fist
+35,29,Pagi,Gambit
+20,29,Pagi,Green Arrow
+37,29,Siang,Scarlet Witch
+3,29,Siang,The Flash
+30,29,Siang,Jean Grey (Phoenix)
+8,29,Siang,Captain America
+4,29,Siang,Green Lantern
+31,29,Siang,Storm
+37,29,Malam,Scarlet Witch
+30,29,Malam,Jean Grey (Phoenix)
+25,29,Malam,Iron Fist
+35,29,Malam,Gambit
+22,29,Malam,Daredevil
+23,30,Pagi,Luke Cage
+19,30,Pagi,Shazam
+38,30,Pagi,Vision
+16,30,Pagi,Ant-Man
+35,30,Pagi,Gambit
+45,30,Pagi,Groot
+23,30,Siang,Luke Cage
+13,30,Siang,Doctor Strange
+19,30,Siang,Shazam
+17,30,Siang,Wolverine
+38,30,Siang,Vision
+31,30,Siang,Storm
+13,30,Malam,Doctor Strange
+17,30,Malam,Wolverine
+38,30,Malam,Vision
+35,30,Malam,Gambit
+31,30,Malam,Storm
