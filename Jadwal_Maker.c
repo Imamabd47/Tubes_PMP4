@@ -141,6 +141,35 @@ void readFile()
     jumlahDokter = konversiDataDokter(daftarDokter);
 }
 
+int hitungPelanggaranPreferensi(char jadwal[30][3][6][100]) {
+    int total_pelanggaran = 0;
+    char *shiftLabel[] = {"pagi", "siang", "malam"};
+    int max_dokter[] = {6, 6, 5};  // Array untuk jumlah maksimal dokter per shift
+
+    for (int hari = 0; hari < 30; hari++) {
+        for (int s = 0; s < 3; s++) {
+            for (int d = 0; d < max_dokter[s]; d++) {
+                if (strlen(jadwal[hari][s][d]) == 0) continue;
+                
+                // Cari dokter di linked list
+                struct datadokter *curr = head;
+                while (curr != NULL) {
+                    if (strcmp(curr->nama, jadwal[hari][s][d]) == 0) {
+                        // Gunakan strstr untuk cek preferensi
+                        if (!cekPreferensi(curr->preferensi, shiftLabel[s])) {
+                            total_pelanggaran++;
+                        }
+                        break;
+                    }
+                    curr = curr->next;
+                }
+            }
+        }
+    }
+    
+    return total_pelanggaran;
+}
+
 void tampilkanDokter()
 {
     struct datadokter *curr = head;
@@ -410,6 +439,8 @@ void jadwalotomatis30hari() {
             }
         }
     }
+    int pelanggaran = hitungPelanggaranPreferensi(jadwalOtomatis);
+    printf("\nTotal pelanggaran preferensi shift: %d\n", pelanggaran);
 }
 
 //Fungsi untuk Pembuatan Jadwal Otomatis
