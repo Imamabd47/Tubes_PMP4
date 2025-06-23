@@ -211,19 +211,19 @@ void preferensi_hari_tambah(char *arr,char *dest){
     }    
     /*printf("T[0]:%d |T[1]:%d |T[2]%d\n",T[0],T[1],T[2]);*/
     if (T[2]==1&&T[1]==1&&T[0]==1)
-        strcpy(dest,"Pagi Siang dan Malam") ; //0 Bebas
+        strcpy(dest,"pagi siang malam") ; //0 Bebas
     else if (T[2]==1&&T[1]==1)
-        strcpy(dest,"Siang dan Malam");  //6 siang dan malam
+        strcpy(dest,"siang malam");  //6 siang dan malam
     else if (T[0]==1&&T[2]==1)
-        strcpy(dest,"Pagi dan Malam");  //5 pagi dan malam
+        strcpy(dest,"pagi malam");  //5 pagi dan malam
     else if (T[0]==1&&T[1]==1)
-        strcpy(dest,"Pagi dan Siang");  //4 pagi dan Siang
+        strcpy(dest,"pagi siang");  //4 pagi dan Siang
     else if (T[2]==1)
-        strcpy(dest,"Malam");  //3 malam
+        strcpy(dest,"malam");  //3 malam
     else if (T[1]==1)
-        strcpy(dest,"Siang");  //2 siang
+        strcpy(dest,"siang");  //2 siang
     else 
-        strcpy(dest,"Pagi");  //1 pagi
+        strcpy(dest,"pagi");  //1 pagi
 }
 
 //Membuat File dari List data raw lama //Update Raw
