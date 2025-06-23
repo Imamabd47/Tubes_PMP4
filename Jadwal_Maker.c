@@ -138,7 +138,6 @@ void readFile()
     }
     fclose(fptr);
     jumlahDokter = konversiDataDokter(daftarDokter);
-    printf("\nData %d dokter berhasil dimuat.\n", jumlahDokter);
 }
 
 void tampilkanDokter()
@@ -414,11 +413,14 @@ void jadwalotomatis30hari() {
 
 //Fungsi untuk Pembuatan Jadwal Otomatis
 void jadwal_maker(){
-    printf("\nMembuat jadwal baru...\n");
+    bersihkanMemori();
+    readFile();
     jadwalotomatis30hari();
+    printf("\nMembuat jadwal baru...\n");
     totalShiftTerisi = konversiJadwal();
     jadwalSudahDibuat = 1;
     printf("Jadwal telah berhasil dibuat.\n");
+    bersihkanMemori();
 }
 
 //Fungsi Fitur Display
@@ -438,27 +440,41 @@ void fitur_display_jadwal(int *choice,char *nama_file,int jadwal_maker_param){
 void menu_jadwal_maker(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat){
     int choice=1;
     bersihkanMemori();
+    int adalist = 0;
     readFile();
-    cetak_bingkai("MENU BUAT JADWAL!!!");
-    fitur_display_jadwal(&choice,nama_file,*jadwal_maker_param);
-    while (choice!=0){
-        switch (choice){
-        case 1:
-            tampilkanDokter();
-            break;
-        case 2:
-            jadwal_maker();
-            *jadwal_maker_param = 0;
-            load_valid(nama_file,*jadwal_maker_param);
-            break;
-        default:
-            printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
-            break;
+    if (current != NULL) adalist = 1;
+    if (adalist){
+        cetak_bingkai("MENU BUAT JADWAL!!!");
+        while (choice!=0){
+            fitur_display_jadwal(&choice,nama_file,*jadwal_maker_param);
+            bersihkanMemori();
+            readFile();
+            if (current==NULL){
+                choice = 0;
+                printf(RED"\nFile anda kosong, Tolong Untuk Masukkan File Yang sesuai Format!! T_T\n"RESET); 
+            }
+            switch (choice){
+            case 1:
+                tampilkanDokter();
+                printBanner("MENU BUAT JADWAL",'*',136); 
+                break;
+            case 2:
+                jadwal_maker();
+                *jadwal_maker_param = 0;
+                *jadwalDibuat = jadwalSudahDibuat;
+                load_valid(nama_file,*jadwal_maker_param);
+                printBanner("MENU BUAT JADWAL",'*',136); 
+                break;
+            case 0:
+                break;
+            default:
+                printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
+                printBanner("MENU BUAT JADWAL",'*',136); 
+                break;
+            }
         }
-        printBanner("MENU BUAT JADWAL",'*',136);
-        fitur_display_jadwal(&choice,nama_file,*jadwal_maker_param);
-        *jadwalDibuat = jadwalSudahDibuat;
     }
+    else  printf(RED"\nFile anda kosong, Tolong Untuk Masukkan File Yang sesuai Format!! T_T\n"RESET);  
 }
 
 

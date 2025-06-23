@@ -636,36 +636,37 @@ void Database(int *JadwalDibuat){
     char nama_file[100]="NONE";
     char nama_file_default[100] ="NONE";
     Load_Nama_File(nama_file,nama_file_default,&jadwal_maker_param);
-    Fitur_display();
-    status_disp(nama_file,jadwal_maker_param,&input);
     while(input!=0){
+        Fitur_display();
+        status_disp(nama_file,jadwal_maker_param,&input);
         switch (input){
         case 1:
             //Memasukkan nama file
             printf("\nMasukkan nama data file Dokter< ");
             input_string(nama_file);
             load_data(nama_file,nama_file_default,&jadwal_maker_param,JadwalDibuat);
+            printBanner("!!!DATABASE PUSAT!!!",'*',136);
             break;
         case 2:
             Tampil(nama_file);
             break;
         case 3:
             edit(nama_file,&jadwal_maker_param,JadwalDibuat);
+            printBanner("!!!DATABASE PUSAT!!!",'*',136);
             break;
         case 4:
             reset_data(nama_file,nama_file_default,&jadwal_maker_param);
             *JadwalDibuat = 0;
+            printBanner("!!!DATABASE PUSAT!!!",'*',136);
             break;
         case 0:
             reset();
             break;
         default:
             printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
+            printBanner("!!!DATABASE PUSAT!!!",'*',136);
             break;
         }
-        printBanner("!!!DATABASE PUSAT!!!",'*',136);
-        Fitur_display();
-        status_disp(nama_file,jadwal_maker_param,&input);
     }   
 }
 
