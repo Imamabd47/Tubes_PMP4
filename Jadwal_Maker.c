@@ -438,7 +438,7 @@ void jadwalotomatis30hari() {
             }
         }
     }
-    int pelanggaran = hitungPelanggaranPreferensi(jadwal);
+    int pelanggaran = hitungPelanggaranPreferensi(jadwalOtomatis);
     printf("\nTotal pelanggaran preferensi shift: %d\n", pelanggaran);
 }
 
