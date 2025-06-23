@@ -52,6 +52,7 @@ Dokter daftarDokter[MAX_DOKTER];
 Shift jadwalFinal[30 * 3 * 6];
 int jumlahDokter = 0;
 int totalShiftTerisi = 0;
+int read_param  = 0;
 // =====================================================================
 // --- BAGIAN OJAN & DZIKRI ---//Jadwal Maker
 // =====================================================================
@@ -413,14 +414,11 @@ void jadwalotomatis30hari() {
 
 //Fungsi untuk Pembuatan Jadwal Otomatis
 void jadwal_maker(){
-    bersihkanMemori();
-    readFile();
     jadwalotomatis30hari();
     printf("\nMembuat jadwal baru...\n");
     totalShiftTerisi = konversiJadwal();
     jadwalSudahDibuat = 1;
     printf("Jadwal telah berhasil dibuat.\n");
-    bersihkanMemori();
     //Mereset Jadwal_Dokter.csv
     FILE *csv;
     csv = fopen("Jadwal_Dokter.csv","w");
@@ -446,16 +444,15 @@ void fitur_display_jadwal(int *choice,char *nama_file,int jadwal_maker_param){
 //Fungsi menu_jadwal_maker : UTAMA BAGIAN OJAN DAN DZIKRI
 void menu_jadwal_maker(char *nama_file,int *jadwal_maker_param,int *jadwalDibuat){
     int choice=1;
-    bersihkanMemori();
     int adalist = 0;
+    bersihkanMemori();
     readFile();
+    read_param = 1;
     if (current != NULL) adalist = 1;
     if (adalist){
         cetak_bingkai("MENU BUAT JADWAL!!!");
         while (choice!=0){
             fitur_display_jadwal(&choice,nama_file,*jadwal_maker_param);
-            bersihkanMemori();
-            readFile();
             if (current==NULL){
                 choice = 0;
                 printf(RED"\nFile anda kosong, Tolong Untuk Masukkan File Yang sesuai Format!! T_T\n"RESET); 
@@ -611,6 +608,7 @@ void tampilkanJadwalSebulan()
     }
 }
 
+
 void tampilkanLaporanPelanggaran()
 {
     printf("\n--- Laporan Detail Pelanggaran Preferensi Shift ---\n");
@@ -638,7 +636,6 @@ void tampilkanLaporanPelanggaran()
         printf("Total semua pelanggaran: %d\n", totalPelanggaran);
     }
 }
-
 void simpanJadwalKeCSV(){
     FILE *fptr = fopen("Jadwal_Dokter.csv", "w");
     if (!fptr)
@@ -714,64 +711,91 @@ void cariJadwalDokter()
         printf("Total shift bulan ini: %d\n", shiftDitemukan);
     }
 }
-
 void muat_jadwal() {
-    readFile();
+    // 0. Pastikan data dokter dasar sudah dimuat agar kita bisa mendapatkan nama
+    //    Ini penting! Fungsi ini butuh daftarDokter untuk mencocokkan ID dengan nama.
+    //    Pastikan readFile() dan konversiDataDokter() sudah dipanggil sebelumnya.
+    if (jumlahDokter == 0) {
+        printf(RED "ERROR: Data dokter belum dimuat. Tidak bisa mencocokkan ID dengan nama.\n" RESET);
+        return;
+    }
+
     FILE *fptr = fopen("Jadwal_Dokter.csv", "r");
     if (!fptr) {
-        printf(RED "ERROR: Gagal membuka file jadwal CSV '%s'.\n" RESET, "Jadwal_Dokter.csv");
+        printf(RED "ERROR: Gagal membuka file jadwal '%s'.\n" RESET, "Jadwal_Dokter.csv");
+        return;
     }
+
+    // 1. Inisialisasi/Bersihkan array target dan tracker
+    // Array target yang akan diisi
+    memset(jadwalOtomatis, 0, sizeof(jadwalOtomatis)); 
+    
+    // Array untuk melacak slot dokter berikutnya yang kosong untuk setiap shift
+    // [hari][shift] -> akan menyimpan jumlah dokter yang sudah ditempatkan
+    int slot_terisi[30][3] = {{0}}; 
 
     char buffer[256];
     // Lewati baris header
-    if (fgets(buffer, sizeof(buffer), fptr) == NULL) {
-        fclose(fptr);
-    }
+    fgets(buffer, sizeof(buffer), fptr);
 
-    int shiftCount = 0;
-    // Baca setiap baris data jadwal
+    int entri_dimuat = 0;
+
+    // 2. Baca setiap baris dari file CSV
     while (fgets(buffer, sizeof(buffer), fptr) != NULL) {
-        buffer[strcspn(buffer, "\n")] = 0;
+        buffer[strcspn(buffer, "\n")] = 0; // Hapus newline
 
-        // Pecah baris menjadi 4 bagian
+        // Pecah baris menjadi 4 kolom: id, hari, tipe, nama
         char *idStr = strtok(buffer, ",");
         char *hariStr = strtok(NULL, ",");
         char *tipeStr = strtok(NULL, ",");
-        // Kolom nama tidak perlu disimpan ke variabel, strtok akan melewatinya
+        char *namaDokter = strtok(NULL, ","); // Kita butuh nama untuk diisi ke array
 
-        if (!idStr || !hariStr || !tipeStr) {
+        if (!idStr || !hariStr || !tipeStr || !namaDokter) {
             continue; // Lewati baris yang formatnya salah
         }
 
-        // --- Proses Konversi Langsung ---
-        // 1. Konversi ID (string -> int)
-        int idDokter = atoi(idStr);
+        // 3. Konversi data dari string
+        int idDokter = atoi(idStr); // Meskipun nama sudah ada, ID tetap berguna
+        int hari = atoi(hariStr) - 1; // Konversi hari ke indeks array (1-30 -> 0-29)
 
-        // 2. Konversi Hari (string -> int)
-        int hari = atoi(hariStr);
+        int tipe_shift_idx; // Indeks untuk shift (0=Pagi, 1=Siang, 2=Malam)
+        if (strcmp(tipeStr, "Pagi") == 0) tipe_shift_idx = 0;
+        else if (strcmp(tipeStr, "Siang") == 0) tipe_shift_idx = 1;
+        else if (strcmp(tipeStr, "Malam") == 0) tipe_shift_idx = 2;
+        else continue;
 
-        // 3. Konversi Tipe Shift (string -> enum)
-        TipeShift tipe;
-        if (strcmp(tipeStr, "Pagi") == 0) tipe = PAGI;
-        else if (strcmp(tipeStr, "Siang") == 0) tipe = SIANG;
-        else if (strcmp(tipeStr, "Malam") == 0) tipe = MALAM;
-        else continue; // Lewati jika tipe shift tidak dikenal
-
-        // Simpan hasil konversi langsung ke dalam array Shift
-        jadwalFinal[shiftCount].id_dokter = idDokter;
-        jadwalFinal[shiftCount].hari = hari;
-        jadwalFinal[shiftCount].tipe = tipe;
-        shiftCount++;
-        
-        // Pencegahan buffer overflow
-        if (shiftCount >= (30 * 3 * 6)) {
-             break;
+        // Validasi data hari dan tipe shift
+        if (hari < 0 || hari >= 30 || tipe_shift_idx < 0 || tipe_shift_idx > 2) {
+            continue;
         }
+
+        // 4. Cari tahu slot mana yang harus diisi
+        int slot_dokter = slot_terisi[hari][tipe_shift_idx];
+
+        // Pencegahan overflow slot (misal, Pagi/Siang maks 6, Malam maks 5)
+        int max_slot[] = {6, 6, 5};
+        if (slot_dokter >= max_slot[tipe_shift_idx]) {
+            printf(YELLOW "Peringatan: Terlalu banyak dokter untuk Hari %d, Shift %s. Entri '%s' dilewati.\n" RESET, hari + 1, tipeStr, namaDokter);
+            continue;
+        }
+        
+        // 5. Isi array jadwalOtomatis dan update tracker
+        strcpy(jadwalOtomatis[hari][tipe_shift_idx][slot_dokter], namaDokter);
+        
+        // Update tracker agar dokter berikutnya masuk ke slot selanjutnya
+        slot_terisi[hari][tipe_shift_idx]++;
+        
+        entri_dimuat++;
     }
 
     fclose(fptr);
-    totalShiftTerisi = shiftCount;
-    printf(F_YELLOW "\nBerhasil memuat %d entri jadwal dari file '%s' menggunakan ID.\n" RESET, shiftCount, "Jadwal_Dokter.csv");
+
+    // 6. Setelah memuat ke 'jadwalOtomatis', konversikan ke 'jadwalFinal'
+    //    agar sisa program bisa berfungsi seperti biasa.
+    totalShiftTerisi = konversiJadwal();
+    jadwalSudahDibuat = 1; // Tandai bahwa jadwal sudah ada
+
+    printf(F_YELLOW "\nBerhasil memuat dan merekonstruksi %d entri jadwal ke dalam memori.\n" RESET, entri_dimuat);
 }
 
 //Fungsi fitur display lihat jadwal
@@ -794,6 +818,10 @@ void fitur_display_lihatJadwal(int *choice,char *nama_file,int jadwal_maker_para
 //Fungsi Menut Utama Lihat Jadwal : UTAMA BAGIAN LUNA DAN ADI
 void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
     int choice=1;
+    if (!read_param) {
+        readFile();
+        read_param = 1;
+    }
     int hari,minggu;
     if (!jadwalSudahDibuat&&!(*(jadwal_maker_param))){
         printf(RED "\n[!] Silakan buat jadwal terlebih dahulu\n" RESET);
@@ -803,6 +831,7 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
         if (!jadwalSudahDibuat){
             muat_jadwal();
         }
+        printf("%d",totalShiftTerisi);
         while (choice!=0){
             fitur_display_lihatJadwal(&choice,nama_file,*jadwal_maker_param);
             switch (choice){
@@ -833,12 +862,12 @@ void menu_lihat_jadwal(char *nama_file,int *jadwal_maker_param){
             case 6:
                 simpanJadwalKeCSV();
                 *jadwal_maker_param = 1;
-                bersihkanMemori();
                 load_valid(nama_file,*jadwal_maker_param);    
                 printBanner("!!!MENU LIHAT JADWAL!!!",'*',136);
                 break;
             case 0:
                 bersihkanMemori();
+                totalShiftTerisi = 0;
                 break;
             default:
                 printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
