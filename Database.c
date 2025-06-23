@@ -230,12 +230,10 @@ void preferensi_hari_tambah(char *arr,char *dest){
 void list2file(char *nama_file){
     struct pegawai *temp = first;
     FILE *a;
-    int arr[3]={0};
     a = fopen(nama_file,"w");
     fprintf(a,"\"Nama\",\"shift_maks\",\"Pagi\",\"Siang\",\"Malam\"\n");
     while (temp!= NULL){
         int arr[3]={0};
-        arr[2]=0;arr[1]=0;arr[0]=0;
         preferensi_hari_inverse(temp->preferensi_shift,arr);
         fprintf(a,"%s,%d,%d,%d,%d\n",temp->nama,temp->maks_shift,arr[0],arr[1],arr[2]);
         temp = temp->next;
