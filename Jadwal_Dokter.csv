@@ -1,91 +1,511 @@
 idDokter,Hari,Tipe_Shift,Nama_Dokter
-0,1,Pagi,Superman
-0,1,Siang,Superman
-0,1,Malam,Superman
-0,2,Pagi,Superman
-0,2,Siang,Superman
-0,2,Malam,Superman
-0,3,Pagi,Superman
-0,3,Siang,Superman
-0,3,Malam,Superman
-0,4,Pagi,Superman
-0,4,Siang,Superman
-0,4,Malam,Superman
-0,5,Pagi,Superman
-0,5,Siang,Superman
-0,5,Malam,Superman
-0,6,Pagi,Superman
-0,6,Siang,Superman
-0,6,Malam,Superman
-0,7,Pagi,Superman
-0,7,Siang,Superman
-0,7,Malam,Superman
-0,8,Pagi,Superman
-0,8,Siang,Superman
-0,8,Malam,Superman
-0,9,Pagi,Superman
-0,9,Siang,Superman
-0,9,Malam,Superman
-0,10,Pagi,Superman
-0,10,Siang,Superman
-0,10,Malam,Superman
-0,11,Pagi,Superman
-0,11,Siang,Superman
-0,11,Malam,Superman
-0,12,Pagi,Superman
-0,12,Siang,Superman
-0,12,Malam,Superman
-0,13,Pagi,Superman
-0,13,Siang,Superman
-0,13,Malam,Superman
-0,14,Pagi,Superman
-0,14,Siang,Superman
-0,14,Malam,Superman
-0,15,Pagi,Superman
-0,15,Siang,Superman
-0,15,Malam,Superman
-0,16,Pagi,Superman
-0,16,Siang,Superman
-0,16,Malam,Superman
-0,17,Pagi,Superman
-0,17,Siang,Superman
-0,17,Malam,Superman
-0,18,Pagi,Superman
-0,18,Siang,Superman
-0,18,Malam,Superman
-0,19,Pagi,Superman
-0,19,Siang,Superman
-0,19,Malam,Superman
-0,20,Pagi,Superman
-0,20,Siang,Superman
-0,20,Malam,Superman
-0,21,Pagi,Superman
-0,21,Siang,Superman
-0,21,Malam,Superman
-0,22,Pagi,Superman
-0,22,Siang,Superman
-0,22,Malam,Superman
-0,23,Pagi,Superman
-0,23,Siang,Superman
-0,23,Malam,Superman
-0,24,Pagi,Superman
-0,24,Siang,Superman
-0,24,Malam,Superman
-0,25,Pagi,Superman
-0,25,Siang,Superman
-0,25,Malam,Superman
-0,26,Pagi,Superman
-0,26,Siang,Superman
-0,26,Malam,Superman
-0,27,Pagi,Superman
-0,27,Siang,Superman
-0,27,Malam,Superman
-0,28,Pagi,Superman
-0,28,Siang,Superman
-0,28,Malam,Superman
-0,29,Pagi,Superman
-0,29,Siang,Superman
-0,29,Malam,Superman
-0,30,Pagi,Superman
-0,30,Siang,Superman
-0,30,Malam,Superman
+18,1,Pagi,Dr. Nugraha S.T. M.T.
+2,1,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+25,1,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+9,1,Pagi,Prof. Dr. Nana Rachmana Syambas
+1,1,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+19,1,Pagi,Dr. Adi Indrayanto S.T. M.T.
+24,1,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,1,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,1,Siang,Dr. Reza Rawassizadeh Ph.D.
+25,1,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+9,1,Siang,Prof. Dr. Nana Rachmana Syambas
+8,1,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+18,1,Malam,Dr. Nugraha S.T. M.T.
+2,1,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,1,Malam,Dr. Reza Rawassizadeh Ph.D.
+8,1,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+7,1,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+28,2,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+27,2,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+1,2,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+30,2,Pagi,Dr. Ir. Rinaldi Munir M.T.
+14,2,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+0,2,Pagi,Prof. Dr. Ir. Pekik Argo Dahono
+24,2,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,2,Siang,Dr. Ir. Arry Akhmad Arman MT.
+1,2,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+30,2,Siang,Dr. Ir. Rinaldi Munir M.T.
+20,2,Siang,Dr. Irma Savitri S.T. M.T. Ph.D.
+21,2,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+28,2,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+0,2,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,2,Malam,Dr. Nugraha S.T. M.T.
+22,2,Malam,Dr. Afwarman M.Sc.
+29,2,Malam,Dr. Reza Rawassizadeh Ph.D.
+30,3,Pagi,Dr. Ir. Rinaldi Munir M.T.
+5,3,Pagi,Dr. Waskita Adijarto S.T. M.T.
+2,3,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,3,Pagi,Dr. Afwarman M.Sc.
+27,3,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+28,3,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,3,Siang,Dr. Ir. Rinaldi Munir M.T.
+5,3,Siang,Dr. Waskita Adijarto S.T. M.T.
+16,3,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+4,3,Siang,Dr. Trio Adiono S.T. M.T.
+24,3,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,3,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+2,3,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,3,Malam,Dr. Afwarman M.Sc.
+28,3,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,3,Malam,Dr. Nugraha S.T. M.T.
+0,3,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+11,4,Pagi,Dr. Ayu Purwarianti S.T. M.T.
+27,4,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+5,4,Pagi,Dr. Waskita Adijarto S.T. M.T.
+26,4,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+28,4,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,4,Pagi,Dr. Ir. Rinaldi Munir M.T.
+11,4,Siang,Dr. Ayu Purwarianti S.T. M.T.
+24,4,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,4,Siang,Dr. Ir. Arry Akhmad Arman MT.
+5,4,Siang,Dr. Waskita Adijarto S.T. M.T.
+12,4,Siang,Dr. Saiful Akbar S.T. M.T.
+30,4,Siang,Dr. Ir. Rinaldi Munir M.T.
+12,4,Malam,Dr. Saiful Akbar S.T. M.T.
+28,4,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+23,4,Malam,Dr. Kridanto Surendro M.Sc.
+0,4,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+29,4,Malam,Dr. Reza Rawassizadeh Ph.D.
+5,5,Pagi,Dr. Waskita Adijarto S.T. M.T.
+17,5,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+21,5,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+1,5,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+22,5,Pagi,Dr. Afwarman M.Sc.
+25,5,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+24,5,Siang,Dr. Yoanes Bandung S.T. M.T.
+4,5,Siang,Dr. Trio Adiono S.T. M.T.
+5,5,Siang,Dr. Waskita Adijarto S.T. M.T.
+17,5,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+12,5,Siang,Dr. Saiful Akbar S.T. M.T.
+21,5,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+12,5,Malam,Dr. Saiful Akbar S.T. M.T.
+22,5,Malam,Dr. Afwarman M.Sc.
+7,5,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+0,5,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,5,Malam,Dr. Nugraha S.T. M.T.
+27,6,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+13,6,Pagi,Dr. Dwi H. Widyantoro S.T. M.T.
+30,6,Pagi,Dr. Ir. Rinaldi Munir M.T.
+25,6,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+14,6,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+22,6,Pagi,Dr. Afwarman M.Sc.
+27,6,Siang,Dr. Ir. Arry Akhmad Arman MT.
+13,6,Siang,Dr. Dwi H. Widyantoro S.T. M.T.
+30,6,Siang,Dr. Ir. Rinaldi Munir M.T.
+25,6,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+12,6,Siang,Dr. Saiful Akbar S.T. M.T.
+16,6,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+22,6,Malam,Dr. Afwarman M.Sc.
+12,6,Malam,Dr. Saiful Akbar S.T. M.T.
+23,6,Malam,Dr. Kridanto Surendro M.Sc.
+8,6,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+15,6,Malam,Dr. Rila Mandala S.T. M.Eng.
+28,7,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+21,7,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,7,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+26,7,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+18,7,Pagi,Dr. Nugraha S.T. M.T.
+6,7,Pagi,Prof. Dr. Ir. Adit Kurniawan M.Eng.
+12,7,Siang,Dr. Saiful Akbar S.T. M.T.
+8,7,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+21,7,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,7,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+29,7,Siang,Dr. Reza Rawassizadeh Ph.D.
+1,7,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+12,7,Malam,Dr. Saiful Akbar S.T. M.T.
+8,7,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+28,7,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,7,Malam,Dr. Nugraha S.T. M.T.
+22,7,Malam,Dr. Afwarman M.Sc.
+18,8,Pagi,Dr. Nugraha S.T. M.T.
+2,8,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+25,8,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+9,8,Pagi,Prof. Dr. Nana Rachmana Syambas
+1,8,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+19,8,Pagi,Dr. Adi Indrayanto S.T. M.T.
+24,8,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,8,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,8,Siang,Dr. Reza Rawassizadeh Ph.D.
+25,8,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+9,8,Siang,Prof. Dr. Nana Rachmana Syambas
+8,8,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+18,8,Malam,Dr. Nugraha S.T. M.T.
+2,8,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,8,Malam,Dr. Reza Rawassizadeh Ph.D.
+8,8,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+7,8,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+28,9,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+27,9,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+1,9,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+30,9,Pagi,Dr. Ir. Rinaldi Munir M.T.
+14,9,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+0,9,Pagi,Prof. Dr. Ir. Pekik Argo Dahono
+24,9,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,9,Siang,Dr. Ir. Arry Akhmad Arman MT.
+1,9,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+30,9,Siang,Dr. Ir. Rinaldi Munir M.T.
+20,9,Siang,Dr. Irma Savitri S.T. M.T. Ph.D.
+21,9,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+28,9,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+0,9,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,9,Malam,Dr. Nugraha S.T. M.T.
+22,9,Malam,Dr. Afwarman M.Sc.
+29,9,Malam,Dr. Reza Rawassizadeh Ph.D.
+30,10,Pagi,Dr. Ir. Rinaldi Munir M.T.
+5,10,Pagi,Dr. Waskita Adijarto S.T. M.T.
+2,10,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,10,Pagi,Dr. Afwarman M.Sc.
+27,10,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+28,10,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,10,Siang,Dr. Ir. Rinaldi Munir M.T.
+5,10,Siang,Dr. Waskita Adijarto S.T. M.T.
+16,10,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+4,10,Siang,Dr. Trio Adiono S.T. M.T.
+24,10,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,10,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+2,10,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,10,Malam,Dr. Afwarman M.Sc.
+28,10,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,10,Malam,Dr. Nugraha S.T. M.T.
+0,10,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+11,11,Pagi,Dr. Ayu Purwarianti S.T. M.T.
+27,11,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+5,11,Pagi,Dr. Waskita Adijarto S.T. M.T.
+26,11,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+28,11,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,11,Pagi,Dr. Ir. Rinaldi Munir M.T.
+11,11,Siang,Dr. Ayu Purwarianti S.T. M.T.
+24,11,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,11,Siang,Dr. Ir. Arry Akhmad Arman MT.
+5,11,Siang,Dr. Waskita Adijarto S.T. M.T.
+12,11,Siang,Dr. Saiful Akbar S.T. M.T.
+30,11,Siang,Dr. Ir. Rinaldi Munir M.T.
+12,11,Malam,Dr. Saiful Akbar S.T. M.T.
+28,11,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+23,11,Malam,Dr. Kridanto Surendro M.Sc.
+0,11,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+29,11,Malam,Dr. Reza Rawassizadeh Ph.D.
+5,12,Pagi,Dr. Waskita Adijarto S.T. M.T.
+17,12,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+21,12,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+1,12,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+22,12,Pagi,Dr. Afwarman M.Sc.
+25,12,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+24,12,Siang,Dr. Yoanes Bandung S.T. M.T.
+4,12,Siang,Dr. Trio Adiono S.T. M.T.
+5,12,Siang,Dr. Waskita Adijarto S.T. M.T.
+17,12,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+12,12,Siang,Dr. Saiful Akbar S.T. M.T.
+21,12,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+12,12,Malam,Dr. Saiful Akbar S.T. M.T.
+22,12,Malam,Dr. Afwarman M.Sc.
+7,12,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+0,12,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,12,Malam,Dr. Nugraha S.T. M.T.
+27,13,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+13,13,Pagi,Dr. Dwi H. Widyantoro S.T. M.T.
+30,13,Pagi,Dr. Ir. Rinaldi Munir M.T.
+25,13,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+14,13,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+22,13,Pagi,Dr. Afwarman M.Sc.
+27,13,Siang,Dr. Ir. Arry Akhmad Arman MT.
+13,13,Siang,Dr. Dwi H. Widyantoro S.T. M.T.
+30,13,Siang,Dr. Ir. Rinaldi Munir M.T.
+25,13,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+12,13,Siang,Dr. Saiful Akbar S.T. M.T.
+16,13,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+22,13,Malam,Dr. Afwarman M.Sc.
+12,13,Malam,Dr. Saiful Akbar S.T. M.T.
+23,13,Malam,Dr. Kridanto Surendro M.Sc.
+8,13,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+15,13,Malam,Dr. Rila Mandala S.T. M.Eng.
+28,14,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+21,14,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,14,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+26,14,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+18,14,Pagi,Dr. Nugraha S.T. M.T.
+6,14,Pagi,Prof. Dr. Ir. Adit Kurniawan M.Eng.
+12,14,Siang,Dr. Saiful Akbar S.T. M.T.
+8,14,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+21,14,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,14,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+29,14,Siang,Dr. Reza Rawassizadeh Ph.D.
+1,14,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+12,14,Malam,Dr. Saiful Akbar S.T. M.T.
+8,14,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+28,14,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,14,Malam,Dr. Nugraha S.T. M.T.
+22,14,Malam,Dr. Afwarman M.Sc.
+18,15,Pagi,Dr. Nugraha S.T. M.T.
+2,15,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+25,15,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+9,15,Pagi,Prof. Dr. Nana Rachmana Syambas
+1,15,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+19,15,Pagi,Dr. Adi Indrayanto S.T. M.T.
+24,15,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,15,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,15,Siang,Dr. Reza Rawassizadeh Ph.D.
+25,15,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+9,15,Siang,Prof. Dr. Nana Rachmana Syambas
+8,15,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+18,15,Malam,Dr. Nugraha S.T. M.T.
+2,15,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,15,Malam,Dr. Reza Rawassizadeh Ph.D.
+8,15,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+7,15,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+28,16,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+27,16,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+1,16,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+30,16,Pagi,Dr. Ir. Rinaldi Munir M.T.
+14,16,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+0,16,Pagi,Prof. Dr. Ir. Pekik Argo Dahono
+24,16,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,16,Siang,Dr. Ir. Arry Akhmad Arman MT.
+1,16,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+30,16,Siang,Dr. Ir. Rinaldi Munir M.T.
+20,16,Siang,Dr. Irma Savitri S.T. M.T. Ph.D.
+21,16,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+28,16,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+0,16,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,16,Malam,Dr. Nugraha S.T. M.T.
+22,16,Malam,Dr. Afwarman M.Sc.
+29,16,Malam,Dr. Reza Rawassizadeh Ph.D.
+30,17,Pagi,Dr. Ir. Rinaldi Munir M.T.
+5,17,Pagi,Dr. Waskita Adijarto S.T. M.T.
+2,17,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,17,Pagi,Dr. Afwarman M.Sc.
+27,17,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+28,17,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,17,Siang,Dr. Ir. Rinaldi Munir M.T.
+5,17,Siang,Dr. Waskita Adijarto S.T. M.T.
+16,17,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+4,17,Siang,Dr. Trio Adiono S.T. M.T.
+24,17,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,17,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+2,17,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,17,Malam,Dr. Afwarman M.Sc.
+28,17,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,17,Malam,Dr. Nugraha S.T. M.T.
+0,17,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+11,18,Pagi,Dr. Ayu Purwarianti S.T. M.T.
+27,18,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+5,18,Pagi,Dr. Waskita Adijarto S.T. M.T.
+26,18,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+28,18,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,18,Pagi,Dr. Ir. Rinaldi Munir M.T.
+11,18,Siang,Dr. Ayu Purwarianti S.T. M.T.
+24,18,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,18,Siang,Dr. Ir. Arry Akhmad Arman MT.
+5,18,Siang,Dr. Waskita Adijarto S.T. M.T.
+12,18,Siang,Dr. Saiful Akbar S.T. M.T.
+30,18,Siang,Dr. Ir. Rinaldi Munir M.T.
+12,18,Malam,Dr. Saiful Akbar S.T. M.T.
+28,18,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+23,18,Malam,Dr. Kridanto Surendro M.Sc.
+0,18,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+29,18,Malam,Dr. Reza Rawassizadeh Ph.D.
+5,19,Pagi,Dr. Waskita Adijarto S.T. M.T.
+17,19,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+21,19,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+1,19,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+22,19,Pagi,Dr. Afwarman M.Sc.
+25,19,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+24,19,Siang,Dr. Yoanes Bandung S.T. M.T.
+4,19,Siang,Dr. Trio Adiono S.T. M.T.
+5,19,Siang,Dr. Waskita Adijarto S.T. M.T.
+17,19,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+12,19,Siang,Dr. Saiful Akbar S.T. M.T.
+21,19,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+12,19,Malam,Dr. Saiful Akbar S.T. M.T.
+22,19,Malam,Dr. Afwarman M.Sc.
+7,19,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+0,19,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,19,Malam,Dr. Nugraha S.T. M.T.
+27,20,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+13,20,Pagi,Dr. Dwi H. Widyantoro S.T. M.T.
+30,20,Pagi,Dr. Ir. Rinaldi Munir M.T.
+25,20,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+14,20,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+22,20,Pagi,Dr. Afwarman M.Sc.
+27,20,Siang,Dr. Ir. Arry Akhmad Arman MT.
+13,20,Siang,Dr. Dwi H. Widyantoro S.T. M.T.
+30,20,Siang,Dr. Ir. Rinaldi Munir M.T.
+25,20,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+12,20,Siang,Dr. Saiful Akbar S.T. M.T.
+16,20,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+22,20,Malam,Dr. Afwarman M.Sc.
+12,20,Malam,Dr. Saiful Akbar S.T. M.T.
+23,20,Malam,Dr. Kridanto Surendro M.Sc.
+8,20,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+15,20,Malam,Dr. Rila Mandala S.T. M.Eng.
+28,21,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+21,21,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,21,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+26,21,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+18,21,Pagi,Dr. Nugraha S.T. M.T.
+6,21,Pagi,Prof. Dr. Ir. Adit Kurniawan M.Eng.
+12,21,Siang,Dr. Saiful Akbar S.T. M.T.
+8,21,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+21,21,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,21,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+29,21,Siang,Dr. Reza Rawassizadeh Ph.D.
+1,21,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+12,21,Malam,Dr. Saiful Akbar S.T. M.T.
+8,21,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+28,21,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,21,Malam,Dr. Nugraha S.T. M.T.
+22,21,Malam,Dr. Afwarman M.Sc.
+18,22,Pagi,Dr. Nugraha S.T. M.T.
+2,22,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+25,22,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+9,22,Pagi,Prof. Dr. Nana Rachmana Syambas
+1,22,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+19,22,Pagi,Dr. Adi Indrayanto S.T. M.T.
+24,22,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,22,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,22,Siang,Dr. Reza Rawassizadeh Ph.D.
+25,22,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+9,22,Siang,Prof. Dr. Nana Rachmana Syambas
+8,22,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+18,22,Malam,Dr. Nugraha S.T. M.T.
+2,22,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+29,22,Malam,Dr. Reza Rawassizadeh Ph.D.
+8,22,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+7,22,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+28,23,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+27,23,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+1,23,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+30,23,Pagi,Dr. Ir. Rinaldi Munir M.T.
+14,23,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+0,23,Pagi,Prof. Dr. Ir. Pekik Argo Dahono
+24,23,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,23,Siang,Dr. Ir. Arry Akhmad Arman MT.
+1,23,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+30,23,Siang,Dr. Ir. Rinaldi Munir M.T.
+20,23,Siang,Dr. Irma Savitri S.T. M.T. Ph.D.
+21,23,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+28,23,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+0,23,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,23,Malam,Dr. Nugraha S.T. M.T.
+22,23,Malam,Dr. Afwarman M.Sc.
+29,23,Malam,Dr. Reza Rawassizadeh Ph.D.
+30,24,Pagi,Dr. Ir. Rinaldi Munir M.T.
+5,24,Pagi,Dr. Waskita Adijarto S.T. M.T.
+2,24,Pagi,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,24,Pagi,Dr. Afwarman M.Sc.
+27,24,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+28,24,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,24,Siang,Dr. Ir. Rinaldi Munir M.T.
+5,24,Siang,Dr. Waskita Adijarto S.T. M.T.
+16,24,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+4,24,Siang,Dr. Trio Adiono S.T. M.T.
+24,24,Siang,Dr. Yoanes Bandung S.T. M.T.
+2,24,Siang,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+2,24,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+22,24,Malam,Dr. Afwarman M.Sc.
+28,24,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,24,Malam,Dr. Nugraha S.T. M.T.
+0,24,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+11,25,Pagi,Dr. Ayu Purwarianti S.T. M.T.
+27,25,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+5,25,Pagi,Dr. Waskita Adijarto S.T. M.T.
+26,25,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+28,25,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+30,25,Pagi,Dr. Ir. Rinaldi Munir M.T.
+11,25,Siang,Dr. Ayu Purwarianti S.T. M.T.
+24,25,Siang,Dr. Yoanes Bandung S.T. M.T.
+27,25,Siang,Dr. Ir. Arry Akhmad Arman MT.
+5,25,Siang,Dr. Waskita Adijarto S.T. M.T.
+12,25,Siang,Dr. Saiful Akbar S.T. M.T.
+30,25,Siang,Dr. Ir. Rinaldi Munir M.T.
+12,25,Malam,Dr. Saiful Akbar S.T. M.T.
+28,25,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+23,25,Malam,Dr. Kridanto Surendro M.Sc.
+0,25,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+29,25,Malam,Dr. Reza Rawassizadeh Ph.D.
+5,26,Pagi,Dr. Waskita Adijarto S.T. M.T.
+17,26,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+21,26,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+1,26,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+22,26,Pagi,Dr. Afwarman M.Sc.
+25,26,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+24,26,Siang,Dr. Yoanes Bandung S.T. M.T.
+4,26,Siang,Dr. Trio Adiono S.T. M.T.
+5,26,Siang,Dr. Waskita Adijarto S.T. M.T.
+17,26,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+12,26,Siang,Dr. Saiful Akbar S.T. M.T.
+21,26,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+12,26,Malam,Dr. Saiful Akbar S.T. M.T.
+22,26,Malam,Dr. Afwarman M.Sc.
+7,26,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+0,26,Malam,Prof. Dr. Ir. Pekik Argo Dahono
+18,26,Malam,Dr. Nugraha S.T. M.T.
+27,27,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+13,27,Pagi,Dr. Dwi H. Widyantoro S.T. M.T.
+30,27,Pagi,Dr. Ir. Rinaldi Munir M.T.
+25,27,Pagi,Dr. techn. Saiful Anwar S.T. M.T.
+14,27,Pagi,Prof. Dr. Ir. Dwiwahju Sasongko M.Sc.
+22,27,Pagi,Dr. Afwarman M.Sc.
+27,27,Siang,Dr. Ir. Arry Akhmad Arman MT.
+13,27,Siang,Dr. Dwi H. Widyantoro S.T. M.T.
+30,27,Siang,Dr. Ir. Rinaldi Munir M.T.
+25,27,Siang,Dr. techn. Saiful Anwar S.T. M.T.
+12,27,Siang,Dr. Saiful Akbar S.T. M.T.
+16,27,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+22,27,Malam,Dr. Afwarman M.Sc.
+12,27,Malam,Dr. Saiful Akbar S.T. M.T.
+23,27,Malam,Dr. Kridanto Surendro M.Sc.
+8,27,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+15,27,Malam,Dr. Rila Mandala S.T. M.Eng.
+28,28,Pagi,Dr. Hilwadi Hindersah S.T. M.T.
+21,28,Pagi,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,28,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+26,28,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+18,28,Pagi,Dr. Nugraha S.T. M.T.
+6,28,Pagi,Prof. Dr. Ir. Adit Kurniawan M.Eng.
+12,28,Siang,Dr. Saiful Akbar S.T. M.T.
+8,28,Siang,Dr. M. Ridwan Effendi S.T. M.Sc.
+21,28,Siang,Dr. Aciek Ida Wuryandari S.T. M.T.
+17,28,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+29,28,Siang,Dr. Reza Rawassizadeh Ph.D.
+1,28,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+12,28,Malam,Dr. Saiful Akbar S.T. M.T.
+8,28,Malam,Dr. M. Ridwan Effendi S.T. M.Sc.
+28,28,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+18,28,Malam,Dr. Nugraha S.T. M.T.
+22,28,Malam,Dr. Afwarman M.Sc.
+30,29,Pagi,Dr. Ir. Rinaldi Munir M.T.
+23,29,Pagi,Dr. Kridanto Surendro M.Sc.
+11,29,Pagi,Dr. Ayu Purwarianti S.T. M.T.
+22,29,Pagi,Dr. Afwarman M.Sc.
+19,29,Pagi,Dr. Adi Indrayanto S.T. M.T.
+26,29,Pagi,Dr. F.X. Nugroho Soelami M.B.A.
+4,29,Siang,Dr. Trio Adiono S.T. M.T.
+24,29,Siang,Dr. Yoanes Bandung S.T. M.T.
+30,29,Siang,Dr. Ir. Rinaldi Munir M.T.
+23,29,Siang,Dr. Kridanto Surendro M.Sc.
+11,29,Siang,Dr. Ayu Purwarianti S.T. M.T.
+19,29,Siang,Dr. Adi Indrayanto S.T. M.T.
+23,29,Malam,Dr. Kridanto Surendro M.Sc.
+22,29,Malam,Dr. Afwarman M.Sc.
+7,29,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+2,29,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+28,29,Malam,Dr. Hilwadi Hindersah S.T. M.T.
+1,30,Pagi,Dr. Ir. Jaka Sembiring M.Eng.
+7,30,Pagi,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+17,30,Pagi,Dr. Ir. I Gusti Bagus Baskara Nugraha
+3,30,Pagi,Dr. Tutun Juhana S.T. M.T.
+18,30,Pagi,Dr. Nugraha S.T. M.T.
+27,30,Pagi,Dr. Ir. Arry Akhmad Arman MT.
+1,30,Siang,Dr. Ir. Jaka Sembiring M.Eng.
+7,30,Siang,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+24,30,Siang,Dr. Yoanes Bandung S.T. M.T.
+17,30,Siang,Dr. Ir. I Gusti Bagus Baskara Nugraha
+27,30,Siang,Dr. Ir. Arry Akhmad Arman MT.
+16,30,Siang,Dr. Ing. Eueung Mulyana S.T. M.Sc.
+7,30,Malam,Dr. Ary Setijadi Prihatmanto S.T. M.T.
+18,30,Malam,Dr. Nugraha S.T. M.T.
+2,30,Malam,Prof. Dr. Ir. Suhono Harso Supangkat M.Eng.
+15,30,Malam,Dr. Rila Mandala S.T. M.Eng.
+28,30,Malam,Dr. Hilwadi Hindersah S.T. M.T.

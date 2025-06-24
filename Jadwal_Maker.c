@@ -805,7 +805,7 @@ void fitur_display_lihatJadwal(int *choice,char *nama_file,int jadwal_maker_para
     printf("[2]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per minggu\n"RESET,"Tampilkan Jadwal Mingguan");
     printf("[3]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per bulan\n"RESET,"Tampilkan Jadwal Sebulan Penuh");
     printf("[4]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per dokter\n"RESET,"Cari Jadwal Dokter");
-    printf("[5]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jadwal per minggu\n"RESET,"Laporan pelanggaran");
+    printf("[5]%-35s||"BOLD ITALIC GREEN"Untuk menampilkan jumlah pelanggaran\n"RESET,"Laporan pelanggaran");
     printf("[6]%-35s||"BOLD ITALIC GREEN"Untuk menyimpan jadwal ke dalam csv\n"RESET,"Simpan Jadwal ke File CSV");
     printf("[0]%-35s||"BOLD ITALIC GREEN"Untuk kembali ke menu utama\n\n"RESET,"Keluar lihat jadwal");
     if (strcasecmp(nama_file,"NONE")==0) printf("Status:\nFile Yang Dimuat< "RED"%s\n"RESET,nama_file);

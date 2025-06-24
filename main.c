@@ -103,10 +103,10 @@ int main(){
     int jadwal_maker_param = 0;
     int fitur_param[2] = {0};
     cetak_bingkai("!!!FITUR UTAMA!!!");
-    avail(nama_file,nama_file_default,fitur_param,&jadwal_maker_param);
     int choice=1;
-    fitur_display(&choice,nama_file,jadwal_maker_param);
     while (choice!=0){
+        avail(nama_file,nama_file_default,fitur_param,&jadwal_maker_param);
+        fitur_display(&choice,nama_file,jadwal_maker_param);
         switch (choice){
         case 1:
             Database(&jadwalDibuat);
@@ -119,14 +119,12 @@ int main(){
             lihat_jadwal(nama_file,&jadwal_maker_param,jadwalDibuat);
             break;
         case 0:
-            reset();
             break;
         default:
             printf(RED"\nPerintah yang anda Masukkan Salah!!!Tolong Input dengan BenarT_T\n"RESET);
             break;
         }
-        avail(nama_file,nama_file_default,fitur_param,&jadwal_maker_param);
-        printBanner("!!!FITUR UTAMA!!!",'*',136);
-        fitur_display(&choice,nama_file,jadwal_maker_param);
+        if(choice!=0) printBanner("!!!FITUR UTAMA!!!",'*',136);
     }
+    return 0;
 }
